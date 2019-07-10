@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "outDir": "./lib",
+    "removeComments": true,
+    "noUnusedLocals": true,
+    "types": [
+      "node",
+      "mocha",
+      "chai",
+      "chai-as-promised",
+    ],
+    "lib": [
+      "es2018"
+    ]
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    ".git",
+    "node_modules/**/node_modules",
+    "**/*.spec.ts"
+  ]
+}

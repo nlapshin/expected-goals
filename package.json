@@ -1,0 +1,42 @@
+{
+  "name": "expected-goals",
+  "version": "1.0.0",
+  "description": "Calculate expected goals(xG)",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "npx mocha -r ts-node/register \"src/**/*.spec.*s\"",
+    "build": "rm -rf ./lib && npx tsc",
+    "lint": "npx tslint 'src/**/*.ts'",
+    "lint:fix": "npx tslint 'src/**/*.ts' --fix"
+  },
+  "pre-commit": [
+    "lint"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nlapshin/expected-goals.git"
+  },
+  "author": "Nikolay Lapshin <nlapshin1989@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nlapshin/expected-goals/issues"
+  },
+  "files": [
+    "lib/**/*"
+  ],
+  "homepage": "https://github.com/nlapshin/expected-goals#readme",
+  "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/chai-as-promised": "^7.1.0",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.6.2",
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "mocha": "^6.1.4",
+    "pre-commit": "^1.2.2",
+    "ts-node-register": "^1.0.0",
+    "tslint": "^5.18.0",
+    "tslint-no-unused-expression-chai": "^0.1.4",
+    "typescript": "^3.5.3"
+  }
+}
