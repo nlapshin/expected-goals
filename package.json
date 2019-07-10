@@ -10,7 +10,8 @@
     "lint:fix": "npx tslint 'src/**/*.ts' --fix"
   },
   "pre-commit": [
-    "lint"
+    "lint",
+    "test"
   ],
   "repository": {
     "type": "git",
