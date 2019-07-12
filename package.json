@@ -39,5 +39,8 @@
     "tslint": "^5.18.0",
     "tslint-no-unused-expression-chai": "^0.1.4",
     "typescript": "^3.5.3"
+  },
+  "dependencies": {
+    "mathjs": "^6.0.3"
   }
 }
