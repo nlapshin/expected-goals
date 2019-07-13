@@ -6,6 +6,7 @@
   "scripts": {
     "test": "npx mocha -r ts-node/register \"src/**/*.spec.*s\"",
     "build": "rm -rf ./lib && npx tsc",
+    "prepack": "npm run build",
     "lint": "npx tslint 'src/**/*.ts'",
     "lint:fix": "npx tslint 'src/**/*.ts' --fix"
   },
@@ -23,7 +24,9 @@
     "url": "https://github.com/nlapshin/expected-goals/issues"
   },
   "files": [
-    "lib/**/*"
+    "lib/**/*",
+    "src/**/*",
+    "tsconfig.json"
   ],
   "homepage": "https://github.com/nlapshin/expected-goals#readme",
   "devDependencies": {
