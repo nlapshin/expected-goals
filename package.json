@@ -30,10 +30,6 @@
   ],
   "homepage": "https://github.com/nlapshin/expected-goals#readme",
   "devDependencies": {
-    "@types/chai": "^4.1.7",
-    "@types/chai-as-promised": "^7.1.0",
-    "@types/mocha": "^5.2.7",
-    "@types/node": "^12.6.2",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
     "mocha": "^6.1.4",
@@ -44,6 +40,10 @@
     "typescript": "^3.5.3"
   },
   "dependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/chai-as-promised": "^7.1.0",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.6.2",
     "mathjs": "^6.0.3"
   }
 }
