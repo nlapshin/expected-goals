@@ -1,8 +1,13 @@
-import { norm } from 'mathjs';
+import { norm, round } from 'mathjs';
 
 import { ICoord, IPostCoord, ICoordLine, ICoordArea } from './model';
 
 export default class Pitch {
+  private pitchSize: ICoord = {
+    x: 68,
+    y: 105,
+  };
+
   private postCoord: IPostCoord = {
     left: { x: 30.34, y: 0 },
     right: { x: 37.66, y: 0 },
@@ -85,6 +90,26 @@ export default class Pitch {
 
   public checkDangerZone(coord: ICoord) {
     return this.checkArea(this.dangerZoneCoord, coord);
+  }
+
+  public convertPercentToYard(coord: ICoord) {
+    const { x, y } = coord;
+    const { x: xLength, y: yLength } = this.pitchSize;
+
+    return {
+      x: round((x * xLength) / 100, 2),
+      y: round((y * yLength) / 100, 2),
+    };
+  }
+
+  public convertYardToPercent(coord: ICoord) {
+    const { x, y } = coord;
+    const { x: xLength, y: yLength } = this.pitchSize;
+
+    return {
+      x: round((x * 100) / xLength, 2),
+      y: round((y * 100) / yLength, 2),
+    };
   }
 
   private calcAngleHandler(coord: ICoord) {

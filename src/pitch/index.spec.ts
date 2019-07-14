@@ -58,7 +58,7 @@ describe('pitch', () => {
   });
 
   describe('checkPullback', () => {
-    it('should return true if the pass coords match pass type pullback', () => {
+    it('should return true if the line coords match pass type pullback', () => {
       const pitch = new Pitch();
 
       expect(pitch.checkPullback({ start: { x: 20, y: 5 }, end: { x: 34, y: 12 } })).to.true;
@@ -66,6 +66,24 @@ describe('pitch', () => {
       expect(pitch.checkPullback({ start: { x: 20, y: 7 }, end: { x: 34, y: 12 } })).to.false;
       expect(pitch.checkPullback({ start: { x: 9, y: 5 }, end: { x: 34, y: 12 } })).to.false;
       expect(pitch.checkPullback({ start: { x: 70, y: 5 }, end: { x: 34, y: 12 } })).to.false;
+    });
+  });
+
+  describe('convertPercentToYard', () => {
+    it('should convert percent coord to yard coord', () => {
+      const pitch = new Pitch();
+
+      expect(pitch.convertPercentToYard({ x: 63.1, y: 9.3 })).to.deep.equal({ x: 42.91, y: 9.77 });
+      expect(pitch.convertPercentToYard({ x: 28.1, y: 19.8 })).to.deep.equal({ x: 19.11, y: 20.79 });
+    });
+  });
+
+  describe('convertYardToPercent', () => {
+    it('should convert yard coord to percent coord', () => {
+      const pitch = new Pitch();
+
+      expect(pitch.convertYardToPercent({ x: 42.91, y: 9.77 })).to.deep.equal({ x: 63.1, y: 9.3 });
+      expect(pitch.convertYardToPercent({ x: 19.11, y: 20.79 })).to.deep.equal({ x: 28.1, y: 19.8 });
     });
   });
 });
