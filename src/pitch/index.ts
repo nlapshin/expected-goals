@@ -3,6 +3,8 @@ import { norm, round } from 'mathjs';
 import { ICoord, IPostCoord, ICoordLine, ICoordArea } from './model';
 
 export default class Pitch {
+  private YARD: number = 0.9144;
+
   private pitchSize: ICoord = {
     x: 68,
     y: 105,
@@ -45,11 +47,16 @@ export default class Pitch {
       return this.calcAngleHandler({ x: leftX - x, y });
     }
 
-    return  this.calcAngleHandler({ x: x - rightX, y });
+    return this.calcAngleHandler({ x: x - rightX, y });
   }
 
   public calcDistance(coord: ICoord): number {
-    return norm([[ coord.x, coord.y ], [ this.postCoord.center.x, this.postCoord.center.y]], 'fro');
+    const xSub = coord.x - this.postCoord.center.x;
+    const ySub = coord.y - this.postCoord.center.y;
+
+    const distance = norm([xSub, ySub]) / this.YARD;
+
+    return round(distance, 2);
   }
 
   public checkArea(area: ICoordArea, coord: ICoord): boolean {
@@ -115,6 +122,6 @@ export default class Pitch {
   private calcAngleHandler(coord: ICoord) {
     const { x, y } = coord;
 
-    return 2 * Math.atan2(y, x) / Math.PI;
+    return round(2 * Math.atan2(y, x) / Math.PI, 2);
   }
 }

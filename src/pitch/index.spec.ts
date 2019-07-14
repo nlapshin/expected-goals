@@ -19,9 +19,9 @@ describe('pitch', () => {
     it('should calculate the distance between the point and the post center', () => {
       const pitch = new Pitch();
 
-      expect(+(pitch.calcDistance({ x: 34, y: 20 })).toFixed(2)).to.equal(52.08);
-      expect(+(pitch.calcDistance({ x: 40, y: 20 })).toFixed(2)).to.equal(56.18);
-      expect(+(pitch.calcDistance({ x: 50, y: 30 })).toFixed(2)).to.equal(67.5);
+      expect(pitch.calcDistance({ x: 34, y: 20 })).to.equal(21.87);
+      expect(pitch.calcDistance({ x: 40, y: 20 })).to.equal(22.84);
+      expect(pitch.calcDistance({ x: 50, y: 30 })).to.equal(37.18);
     });
   });
 
