@@ -51,12 +51,30 @@ export default class Pitch {
   }
 
   public calcDistance(coord: ICoord): number {
-    const xSub = coord.x - this.postCoord.center.x;
-    const ySub = coord.y - this.postCoord.center.y;
+    return this.calcDistanceBetweenCoord(coord, this.postCoord.center);
+  }
+
+  public calcDistanceBetweenCoord(coord1: ICoord, coord2: ICoord): number {
+    const xSub = coord1.x - coord2.x;
+    const ySub = coord1.y - coord2.y;
 
     const distance = norm([xSub, ySub]) / this.YARD;
 
     return round(distance, 2);
+  }
+
+  public calcShotDistanceByCaley(coord: ICoord, headerOrCross: boolean = false): number {
+    const { x, y } = coord;
+
+    if (headerOrCross) {
+      return round(y / this.YARD, 2);
+    }
+
+    return this.calcDistance({ x, y });
+  }
+
+  public calcDribbleDistanceByCaley(dribbleCoord: ICoord, shotCoord: ICoord): number {
+    return this.calcDistanceBetweenCoord(dribbleCoord, shotCoord);
   }
 
   public checkArea(area: ICoordArea, coord: ICoord): boolean {

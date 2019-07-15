@@ -25,6 +25,26 @@ describe('pitch', () => {
     });
   });
 
+  describe('calcDistanceBetweenCoord', () => {
+    it('should calculate the distance between two coords', () => {
+      const pitch = new Pitch();
+
+      expect(pitch.calcDistanceBetweenCoord({ x: 34, y: 20 }, { x: 34, y: 0 })).to.equal(21.87);
+      expect(pitch.calcDistanceBetweenCoord({ x: 40, y: 20 }, { x: 34, y: 0 })).to.equal(22.84);
+      expect(pitch.calcDistanceBetweenCoord({ x: 50, y: 30 }, { x: 34, y: 0 })).to.equal(37.18);
+    });
+  });
+
+  describe('calcShotDistanceByCaley', () => {
+    it('should calculate the shot distance by Caley metric', () => {
+      const pitch = new Pitch();
+
+      expect(pitch.calcShotDistanceByCaley({ x: 34, y: 20 })).to.equal(21.87);
+      expect(pitch.calcShotDistanceByCaley({ x: 50, y: 30 })).to.equal(37.18);
+      expect(pitch.calcShotDistanceByCaley({ x: 50, y: 30 }, true)).to.equal(32.81);
+    });
+  });
+
   describe('checkArea', () => {
     it('should return true if the specified coord includes to area, otherwise return false', () => {
       const pitch = new Pitch();
