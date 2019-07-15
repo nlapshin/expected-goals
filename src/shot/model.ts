@@ -47,7 +47,7 @@ export interface IShotFlat {
   shotTime: string;
   shotCoord: ICoord;
   shotAngle: number;
-  shotAngleInverse: numbler;
+  shotAngleInverse: number;
   shotDistance: number;
   shotDistanceInverse: number;
   shotType: TShotType;
