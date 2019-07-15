@@ -1,0 +1,561 @@
+[
+    {
+        "id": 24,
+        "relativeShots": [],
+        "time": "1:11",
+        "coord": {
+            "x": 48.35,
+            "y": 14.39
+        },
+        "angle": 0.59,
+        "distance": 22.22,
+        "meta": {
+            "type": "RegularShot",
+            "part": "RightFoot",
+            "following": null,
+            "attack": "OpenPlay",
+            "bigChance": false,
+            "assist": {
+                "coord": {
+                    "start": {
+                        "x": 61.13,
+                        "y": 13.44
+                    },
+                    "end": {
+                        "x": 51,
+                        "y": 15.44
+                    }
+                },
+                "angle": 0.33,
+                "distance": 33.11,
+                "meta": {
+                    "type": null
+                }
+            }
+        }
+    },
+    {
+        "id": 26,
+        "relativeShots": [],
+        "time": "2:23",
+        "coord": {
+            "x": 34,
+            "y": 12.08
+        },
+        "angle": 1,
+        "distance": 13.21,
+        "meta": {
+            "type": "RegularShot",
+            "part": "RightFoot",
+            "following": null,
+            "attack": "Penalty",
+            "bigChance": true,
+            "assist": null
+        }
+    },
+    {
+        "id": 177,
+        "relativeShots": [],
+        "time": "14:23",
+        "coord": {
+            "x": 36.18,
+            "y": 25.73
+        },
+        "angle": 1,
+        "distance": 28.24,
+        "meta": {
+            "type": "RegularShot",
+            "part": "RightFoot",
+            "following": null,
+            "attack": "OpenPlay",
+            "bigChance": false,
+            "assist": null
+        }
+    },
+    {
+        "id": 273,
+        "relativeShots": [],
+        "time": "24:7",
+        "coord": {
+            "x": 24,
+            "y": 23
+        },
+        "angle": 0.83,
+        "distance": 27.43,
+        "meta": {
+            "type": "RegularShot",
+            "part": "RightFoot",
+            "following": null,
+            "attack": "OpenPlay",
+            "bigChance": false,
+            "assist": {
+                "coord": {
+                    "start": {
+                        "x": 16.59,
+                        "y": 22.79
+                    },
+                    "end": {
+                        "x": 28.49,
+                        "y": 27.62
+                    }
+                },
+                "angle": 0.65,
+                "distance": 31.36,
+                "meta": {
+                    "type": null
+                }
+            }
+        }
+    },
+    {
+        "id": 318,
+        "relativeShots": [],
+        "time": "28:7",
+        "coord": {
+            "x": 27.2,
+            "y": 11.76
+        },
+        "angle": 0.83,
+        "distance": 14.86,
+        "meta": {
+            "type": "RegularShot",
+            "part": "RightFoot",
+            "following": null,
+            "attack": "OpenPlay",
+            "bigChance": false,
+            "assist": {
+                "coord": {
+                    "start": {
+                        "x": 15.5,
+                        "y": 13.65
+                    },
+                    "end": {
+                        "x": 30.46,
+                        "y": 12.5
+                    }
+                },
+                "angle": 0.47,
+                "distance": 25.14,
+                "meta": {
+                    "type": null
+                }
+            }
+        }
+    },
+    {
+        "id": 323,
+        "relativeShots": [],
+        "time": "28:48",
+        "coord": {
+            "x": 33.39,
+            "y": 29.93
+        },
+        "angle": 1,
+        "distance": 32.74,
+        "meta": {
+            "type": "RegularShot",
+            "part": "RightFoot",
+            "following": "Corner",
+            "attack": "OpenPlay",
+            "bigChance": false,
+            "assist": null
+        }
+    },
+    {
+        "id": 336,
+        "relativeShots": [],
+        "time": "31:26",
+        "coord": {
+            "x": 34.2,
+            "y": 28.46
+        },
+        "angle": 1,
+        "distance": 31.13,
+        "meta": {
+            "type": "DirectFreeKickShot",
+            "part": "RightFoot",
+            "following": null,
+            "attack": "OpenPlay",
+            "bigChance": false,
+            "assist": {
+                "coord": {
+                    "start": {
+                        "x": 35.43,
+                        "y": 29.4
+                    },
+                    "end": {
+                        "x": 34.2,
+                        "y": 29.4
+                    }
+                },
+                "angle": 1,
+                "distance": 32.19,
+                "meta": {
+                    "type": null
+                }
+            }
+        }
+    },
+    {
+        "id": 379,
+        "relativeShots": [],
+        "time": "34:26",
+        "coord": {
+            "x": 65.89,
+            "y": 32.87
+        },
+        "angle": 0.55,
+        "distance": 50.08,
+        "meta": {
+            "type": "RegularShot",
+            "part": null,
+            "following": null,
+            "attack": "OpenPlay",
+            "bigChance": false,
+            "assist": null
+        }
+    },
+    {
+        "id": 404,
+        "relativeShots": [],
+        "time": "35:40",
+        "coord": {
+            "x": 58.28,
+            "y": 21.11
+        },
+        "angle": 0.51,
+        "distance": 35.19,
+        "meta": {
+            "type": "RegularShot",
+            "part": null,
+            "following": null,
+            "attack": "OpenPlay",
+            "bigChance": false,
+            "assist": null
+        }
+    },
+    {
+        "id": 535,
+        "relativeShots": [],
+        "time": "49:58",
+        "coord": {
+            "x": 21.9,
+            "y": 22.58
+        },
+        "angle": 0.77,
+        "distance": 28.02,
+        "meta": {
+            "type": "RegularShot",
+            "part": "LeftFoot",
+            "following": null,
+            "attack": "OpenPlay",
+            "bigChance": false,
+            "assist": {
+                "coord": {
+                    "start": {
+                        "x": 4.62,
+                        "y": 24.05
+                    },
+                    "end": {
+                        "x": 17.34,
+                        "y": 23.52
+                    }
+                },
+                "angle": 0.48,
+                "distance": 41.52,
+                "meta": {
+                    "type": null
+                }
+            }
+        }
+    },
+    {
+        "id": 558,
+        "relativeShots": [],
+        "time": "52:17",
+        "coord": {
+            "x": 29.1,
+            "y": 70.98
+        },
+        "angle": 0.99,
+        "distance": 77.81,
+        "meta": {
+            "type": "RegularShot",
+            "part": null,
+            "following": null,
+            "attack": "OpenPlay",
+            "bigChance": false,
+            "assist": null
+        }
+    },
+    {
+        "id": 668,
+        "relativeShots": [],
+        "time": "63:6",
+        "coord": {
+            "x": 2.18,
+            "y": 63.53
+        },
+        "angle": 0.73,
+        "distance": 77.7,
+        "meta": {
+            "type": "RegularShot",
+            "part": null,
+            "following": null,
+            "attack": "OpenPlay",
+            "bigChance": false,
+            "assist": null
+        }
+    },
+    {
+        "id": 784,
+        "relativeShots": [],
+        "time": "74:56",
+        "coord": {
+            "x": 31.42,
+            "y": 7.67
+        },
+        "angle": 1,
+        "distance": 8.39,
+        "meta": {
+            "type": "CrossAndHeaderShot",
+            "part": "RightFoot",
+            "following": null,
+            "attack": "OpenPlay",
+            "bigChance": false,
+            "assist": {
+                "coord": {
+                    "start": {
+                        "x": 9.79,
+                        "y": 7.35
+                    },
+                    "end": {
+                        "x": 29.65,
+                        "y": 8.72
+                    }
+                },
+                "angle": 0.22,
+                "distance": 27.67,
+                "meta": {
+                    "type": null
+                }
+            }
+        }
+    },
+    {
+        "id": 793,
+        "relativeShots": [],
+        "time": "76:23",
+        "coord": {
+            "x": 41.62,
+            "y": 28.98
+        },
+        "angle": 0.91,
+        "distance": 32.77,
+        "meta": {
+            "type": "RegularShot",
+            "part": "RightFoot",
+            "following": null,
+            "attack": "OpenPlay",
+            "bigChance": false,
+            "assist": null
+        }
+    },
+    {
+        "id": 780,
+        "relativeShots": [],
+        "time": "74:41",
+        "coord": {
+            "x": 10.4,
+            "y": 29.82
+        },
+        "angle": 0.62,
+        "distance": 41.59,
+        "meta": {
+            "type": "RegularShot",
+            "part": null,
+            "following": null,
+            "attack": "OpenPlay",
+            "bigChance": false,
+            "assist": null
+        }
+    },
+    {
+        "id": 818,
+        "relativeShots": [],
+        "time": "79:43",
+        "coord": {
+            "x": 9.11,
+            "y": 28.35
+        },
+        "angle": 0.59,
+        "distance": 41.26,
+        "meta": {
+            "type": "RegularShot",
+            "part": null,
+            "following": null,
+            "attack": "OpenPlay",
+            "bigChance": false,
+            "assist": null
+        }
+    },
+    {
+        "id": 899,
+        "relativeShots": [],
+        "time": "88:58",
+        "coord": {
+            "x": 32.57,
+            "y": 20.16
+        },
+        "angle": 1,
+        "distance": 22.1,
+        "meta": {
+            "type": "RegularShot",
+            "part": "LeftFoot",
+            "following": null,
+            "attack": "OpenPlay",
+            "bigChance": false,
+            "assist": {
+                "coord": {
+                    "start": {
+                        "x": 37.88,
+                        "y": 31.19
+                    },
+                    "end": {
+                        "x": 30.53,
+                        "y": 23.73
+                    }
+                },
+                "angle": 1,
+                "distance": 34.37,
+                "meta": {
+                    "type": null
+                }
+            }
+        }
+    },
+    {
+        "id": 915,
+        "relativeShots": [],
+        "time": "89:55",
+        "coord": {
+            "x": 39.37,
+            "y": 25.1
+        },
+        "angle": 0.96,
+        "distance": 28.07,
+        "meta": {
+            "type": "RegularShot",
+            "part": "RightFoot",
+            "following": null,
+            "attack": "OpenPlay",
+            "bigChance": false,
+            "assist": {
+                "coord": {
+                    "start": {
+                        "x": 64.87,
+                        "y": 16.07
+                    },
+                    "end": {
+                        "x": 48.55,
+                        "y": 26.57
+                    }
+                },
+                "angle": 0.34,
+                "distance": 38.06,
+                "meta": {
+                    "type": null
+                }
+            }
+        }
+    },
+    {
+        "id": 926,
+        "relativeShots": [],
+        "time": "90:31",
+        "coord": {
+            "x": 35.84,
+            "y": 10.92
+        },
+        "angle": 1,
+        "distance": 12.11,
+        "meta": {
+            "type": "RegularShot",
+            "part": "RightFoot",
+            "following": null,
+            "attack": "OpenPlay",
+            "bigChance": true,
+            "assist": {
+                "coord": {
+                    "start": {
+                        "x": 19.86,
+                        "y": 23.21
+                    },
+                    "end": {
+                        "x": 35.84,
+                        "y": 11.03
+                    }
+                },
+                "angle": 0.73,
+                "distance": 29.72,
+                "meta": {
+                    "type": null
+                }
+            }
+        }
+    },
+    {
+        "id": 940,
+        "relativeShots": [],
+        "time": "91:51",
+        "coord": {
+            "x": 36.04,
+            "y": 1.05
+        },
+        "angle": 1,
+        "distance": 1.15,
+        "meta": {
+            "type": "CrossAndHeaderShot",
+            "part": "Head",
+            "following": null,
+            "attack": "OpenPlay",
+            "bigChance": true,
+            "assist": null
+        }
+    },
+    {
+        "id": 968,
+        "relativeShots": [],
+        "time": "94:29",
+        "coord": {
+            "x": 36.86,
+            "y": 8.82
+        },
+        "angle": 1,
+        "distance": 9.65,
+        "meta": {
+            "type": "CrossAndHeaderShot",
+            "part": "Head",
+            "following": "Corner",
+            "attack": "SetPiece",
+            "bigChance": false,
+            "assist": {
+                "coord": {
+                    "start": {
+                        "x": 67.66,
+                        "y": 0.53
+                    },
+                    "end": {
+                        "x": 36.04,
+                        "y": 9.03
+                    }
+                },
+                "angle": 0.01,
+                "distance": 36.82,
+                "meta": {
+                    "type": null
+                }
+            }
+        }
+    }
+]

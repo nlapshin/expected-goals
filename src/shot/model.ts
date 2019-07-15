@@ -1,34 +1,65 @@
+import { ICoord } from '../pitch/model';
+
+export interface IAssistCoord {
+  start: ICoord;
+  end: ICoord;
+}
+
+export type TShotType = 'RegularShot' | 'DirectFreeKickShot' |
+  'CrossAndHeaderShot' | 'CrossAndFeetShot' | 'HeaderShot' | 'DibbleKeeperShot';
+
+export type TShotPart = 'LeftFoot' | 'RightFoot' | 'Head' | 'OtherBodyPart';
+
+export type TShotFollowing = 'Corner' | 'Error' | 'Dribble' | null;
+
+export type TAttackType = 'OpenPlay' | 'EstablishedPossession' | 'SetPiece' | 'FastBreak' | 'Penalty' | 'OwnGoal';
+
+export type TAssistType = 'Throughball' | 'AssistAfterThroughball' | 'Pullback'  | 'AssistAcrossFace' | null;
+
 export interface IShot {
-  league?: string;
-  coord: {
-    x: number;
-    y: number;
-  };
-  assist?: {
-    x: number;
-    y: number;
-  };
+  id: number;
+  relativeShots: number[];
+  time: string;
+  coord: ICoord;
+  angle: number;
+  distance: number;
   meta: {
-    corner?: boolean;
-    header?: boolean;
-    cross?: boolean;
-    bigChance?: boolean;
-    assistPoint?: boolean;
-    throughballAssist?: boolean;
-    throughballAndAssist?: boolean;
-    cutbackAssist?: boolean;
-    rebound?: boolean;
-    establishedPossession?: boolean;
-    fastBreak?: boolean;
-    counterAttack?: boolean;
-    gameState?: boolean;
-    followingCorner?: boolean;
-    followingDribble?: boolean;
-    startRunPoint?: boolean;
-    otherBodyPart?: boolean;
-    setPiece?: boolean;
-    followingError?: boolean;
-    directFreeKick?: boolean;
-    dribbleGoalkeeper?: boolean;
+    type: TShotType,
+    part: TShotPart,
+    following: TShotFollowing,
+    attack: TAttackType,
+    bigChance: boolean,
+    assist: {
+      coord: IAssistCoord;
+      angle: number;
+      distance: number;
+      meta: {
+        type: TAssistType;
+        keyPass: boolean;
+      }
+    },
   };
+}
+
+export interface IShotFlat {
+  id: number;
+  relativeShots: number[];
+  shotTime: string;
+  shotCoord: ICoord;
+  shotAngle: number;
+  shotAngleInverse: numbler;
+  shotDistance: number;
+  shotDistanceInverse: number;
+  shotType: TShotType;
+  shotPart: TShotPart;
+  shotFollowing: TShotFollowing;
+  shotAttack: TAttackType;
+  shotBigChance: boolean;
+  assistCoord?: IAssistCoord;
+  assistAngle?: number;
+  assistAngleInverse?: number;
+  assistDistance?: number;
+  assistDistanceInverse?: number;
+  assistType?: TAssistType;
+  assistKeyPass?: boolean;
 }
