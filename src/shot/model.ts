@@ -6,7 +6,7 @@ export interface IAssistCoord {
 }
 
 export type TShotType = 'RegularShot' | 'DirectFreeKickShot' |
-  'CrossAndHeaderShot' | 'CrossAndFeetShot' | 'HeaderShot' | 'DibbleKeeperShot';
+  'CrossAndHeaderShot' | 'CrossAndFeetShot' | 'HeaderShot' | 'DribbleShot' | 'DribbleKeeperShot';
 
 export type TShotPart = 'LeftFoot' | 'RightFoot' | 'Head' | 'OtherBodyPart';
 
