@@ -12,7 +12,7 @@ describe('Shot', () => {
       const shotsSet = fse.readJSONSync(path.resolve(__dirname, '../../fixtures/shots_set.json'));
 
       expect(shot.flatShot(shotsSet[0])).to.deep.equal({
-        id: 24,
+        id: 1,
         relativeShots: [],
         shotTime: '1:11',
         shotCoord: { x: 48.35, y: 14.39 },
@@ -32,10 +32,11 @@ describe('Shot', () => {
         assistDistanceInverse: 0.03,
         assistType: null,
         assistKeyPass: false,
+        assistIntentional: false,
       });
 
       expect(shot.flatShot(shotsSet[1])).to.deep.equal({
-        id: 26,
+        id: 3,
         relativeShots: [],
         shotTime: '2:23',
         shotCoord: { x: 34, y: 12.08 },
