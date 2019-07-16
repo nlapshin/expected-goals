@@ -5,6 +5,11 @@ import { IShot, IShotFlat } from './model';
 
 export default class Shot {
   public flatShot(shot: IShot): IShotFlat {
+    const shotType = get(shot, 'meta.type');
+    const shotPart = get(shot, 'meta.part');
+    const shotFollowing = get(shot, 'meta.following');
+    const shotAttack = get(shot, 'meta.attack');
+
     let output: IShotFlat = {
       id: shot.id,
       relativeShots: shot.relativeShots,
@@ -14,16 +19,34 @@ export default class Shot {
       shotAngleInverse: this.inverseNumber(shot.angle),
       shotDistance: shot.distance,
       shotDistanceInverse: this.inverseNumber(shot.distance),
-      shotType: get(shot, 'meta.type'),
-      shotPart: get(shot, 'meta.part'),
-      shotFollowing: get(shot, 'meta.following'),
-      shotAttack: get(shot, 'meta.attack'),
+      shotType,
+      shotPart,
+      shotFollowing,
+      shotAttack,
       shotBigChance: get(shot, 'meta.bigChance'),
     };
+
+    if (shotType) {
+      output[`shotType${shotType}`] = true;
+    }
+
+    if (shotPart) {
+      output[`shotPart${shotPart}`] = true;
+    }
+
+    if (shotFollowing) {
+      output[`shotFollowing${shotFollowing}`] = true;
+    }
+
+    if (shotAttack) {
+      output[`shotAttack${shotAttack}`] = true;
+    }
 
     const assist = get(shot, 'meta.assist');
 
     if (assist) {
+      const assistType = get(assist, 'meta.type');
+
       output = {
         ...output,
         ...{
@@ -32,11 +55,15 @@ export default class Shot {
           assistAngleInverse: this.inverseNumber(assist.angle),
           assistDistance: assist.distance,
           assistDistanceInverse: this.inverseNumber(assist.distance),
-          assistType: get(assist, 'meta.type'),
-          assistIntentional: get(assist, 'meta.intentional'),
+          assistType,
+          assistIntentional: get(assist,   'meta.intentional'),
           assistKeyPass: get(assist, 'meta.keyPass'),
         },
       };
+
+      if (assistType) {
+        output[`assistType${assistType}`] = true;
+      }
     }
 
     const dribble = get(shot, 'meta.dribble');
