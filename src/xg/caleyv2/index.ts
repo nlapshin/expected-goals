@@ -1,4 +1,5 @@
 import { TxG } from './../model';
+import { IShot } from '../../shot/model';
 
 import Shot from '../../shot';
 const shotModule = new Shot();
