@@ -14,7 +14,23 @@ export type TShotFollowing = 'Corner' | 'Error' | 'Dribble' | null;
 
 export type TAttackType = 'OpenPlay' | 'EstablishedPossession' | 'SetPiece' | 'FastBreak' | 'Penalty' | 'OwnGoal';
 
-export type TAssistType = 'Throughball' | 'AssistAfterThroughball' | 'Pullback'  | 'AssistAcrossFace' | null;
+export type TAssistType = 'Throughball' | 'AssistAfterThroughball' | 'Pullback'  | 'AssistAcrossFace' | 'HeadAssist' | null;
+
+export interface IAssist {
+  coord: IAssistCoord;
+  angle: number;
+  distance: number;
+  meta: {
+    type: TAssistType;
+    intentional: boolean;
+    keyPass: boolean;
+  };
+}
+
+export interface IDribble {
+  coord: ICoord;
+  distance: number;
+}
 
 export interface IShot {
   id: number;
@@ -29,15 +45,8 @@ export interface IShot {
     following: TShotFollowing,
     attack: TAttackType,
     bigChance: boolean,
-    assist: {
-      coord: IAssistCoord;
-      angle: number;
-      distance: number;
-      meta: {
-        type: TAssistType;
-        keyPass: boolean;
-      }
-    },
+    assist?: IAssist,
+    dribble?: IDribble,
   };
 }
 
@@ -61,5 +70,8 @@ export interface IShotFlat {
   assistDistance?: number;
   assistDistanceInverse?: number;
   assistType?: TAssistType;
+  assistIntentional?: boolean;
   assistKeyPass?: boolean;
+  dribbleCoord?: ICoord;
+  dribbleDistance?: number;
 }

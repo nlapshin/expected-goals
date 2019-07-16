@@ -33,7 +33,20 @@ export default class Shot {
           assistDistance: assist.distance,
           assistDistanceInverse: this.inverseNumber(assist.distance),
           assistType: get(assist, 'meta.type'),
-          assistKeyPass: get(assist, 'meta.keyPass') || false,
+          assistIntentional: get(assist, 'meta.intentional'),
+          assistKeyPass: get(assist, 'meta.keyPass'),
+        },
+      };
+    }
+
+    const dribble = get(shot, 'meta.dribble');
+
+    if (dribble) {
+      output = {
+        ...output,
+        ...{
+          dribbleCoord: dribble.coord,
+          dribbleDistance: dribble.distance,
         },
       };
     }
