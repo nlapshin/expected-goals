@@ -4,6 +4,7 @@ import * as path from 'path';
 import * as fse from 'fs-extra';
 
 import Shot from './';
+import { TShotType } from './model';
 
 describe('Shot', () => {
   describe('flatShot', () => {
@@ -55,6 +56,52 @@ describe('Shot', () => {
         shotAttack: 'Penalty',
         shotAttackPenalty: true,
         shotBigChance: true,
+      });
+    });
+  });
+
+  describe('prepareShot', () => {
+    it('should calculate', () => {
+      const shot = new Shot({ isYard: true });
+
+      expect(shot.prepareShot({
+        coord: { y: 12, x: 34 },
+        meta: { type: 'RegularShot' as TShotType },
+      })).to.deep.equal({
+        coord: { y: 12, x: 34 },
+        meta: { type: 'RegularShot' },
+        distance: 12,
+        angle: 1,
+      });
+
+      expect(shot.prepareShot({
+        coord: { y: 12, x: 44 },
+        meta: { type: 'RegularShot' as TShotType },
+      })).to.deep.equal({
+        coord: { y: 12, x: 44 },
+        meta: { type: 'RegularShot' },
+        distance: 15.62,
+        angle: 0.69,
+      });
+
+      expect(shot.prepareShot({
+        coord: { y: 12, x: 38 },
+        meta: { type: 'RegularShot' as TShotType },
+      })).to.deep.equal({
+        coord: { y: 12, x: 38 },
+        meta: { type: 'RegularShot' },
+        distance: 12.65,
+        angle: 0.98,
+      });
+
+      expect(shot.prepareShot({
+        coord: { y: 12, x: 37 },
+        meta: { type: 'RegularShot' as TShotType },
+      })).to.deep.equal({
+        coord: { y: 12, x: 37 },
+        meta: { type: 'RegularShot' },
+        distance: 12.37,
+        angle: 1,
       });
     });
   });

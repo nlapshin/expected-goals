@@ -33,37 +33,37 @@ export interface IDribble {
 }
 
 export interface IShot {
-  id: number;
-  relativeShots: number[];
-  time: string;
+  id?: number;
+  relativeShots?: number[];
+  time?: string;
   coord: ICoord;
-  angle: number;
-  distance: number;
+  angle?: number;
+  distance?: number;
   meta: {
     type: TShotType,
-    part: TShotPart,
-    following: TShotFollowing,
-    attack: TAttackType,
-    bigChance: boolean,
+    part?: TShotPart,
+    following?: TShotFollowing,
+    attack?: TAttackType,
+    bigChance?: boolean,
     assist?: IAssist,
     dribble?: IDribble,
   };
 }
 
 export interface IShotFlat {
-  id: number;
-  relativeShots: number[];
-  shotTime: string;
+  id?: number;
+  relativeShots?: number[];
+  shotTime?: string;
   shotCoord: ICoord;
-  shotAngle: number;
-  shotAngleInverse: number;
-  shotDistance: number;
-  shotDistanceInverse: number;
+  shotAngle?: number;
+  shotAngleInverse?: number;
+  shotDistance?: number;
+  shotDistanceInverse?: number;
   shotType: TShotType;
-  shotPart: TShotPart;
-  shotFollowing: TShotFollowing;
-  shotAttack: TAttackType;
-  shotBigChance: boolean;
+  shotPart?: TShotPart;
+  shotFollowing?: TShotFollowing;
+  shotAttack?: TAttackType;
+  shotBigChance?: boolean;
   assistCoord?: IAssistCoord;
   assistAngle?: number;
   assistAngleInverse?: number;

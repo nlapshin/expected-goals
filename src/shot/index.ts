@@ -1,9 +1,16 @@
 import { get } from 'dotty';
 import { round } from 'mathjs';
 
+import Pitch from '../pitch';
 import { IShot, IShotFlat } from './model';
 
 export default class Shot {
+  private pitch: Pitch;
+
+  constructor(options = { isYard: false }) {
+    this.pitch = new Pitch({ isYard: options.isYard });
+  }
+
   public flatShot(shot: IShot): IShotFlat {
     const shotType = get(shot, 'meta.type');
     const shotPart = get(shot, 'meta.part');
@@ -79,6 +86,32 @@ export default class Shot {
     }
 
     return output;
+  }
+
+  public prepareShot(shot: IShot, byCaley = false): IShot {
+    if (!shot.distance) {
+      if (byCaley) {
+        const headerOrCross = this.headerOrCross(shot);
+
+        shot.distance = this.pitch.calcShotDistanceByCaley(shot.coord, headerOrCross);
+      } else {
+        shot.distance = this.pitch.calcDistance(shot.coord);
+      }
+    }
+
+    if (!shot.angle) {
+      shot.angle = this.pitch.calcAngle(shot.coord);
+    }
+
+    return shot;
+  }
+
+  public headerOrCross(shot: IShot) {
+    const type = shot.meta.type;
+
+    return type === 'CrossAndHeaderShot' ||
+      type === 'CrossAndFeetShot' ||
+      type === 'HeaderShot';
   }
 
   private inverseNumber(num: number) {

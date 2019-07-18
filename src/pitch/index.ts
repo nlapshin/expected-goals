@@ -3,6 +3,7 @@ import { norm, round } from 'mathjs';
 import { ICoord, IPostCoord, ICoordLine, ICoordArea } from './model';
 
 export default class Pitch {
+  private distanceCoef: number;
   private YARD: number = 0.9144;
 
   private pitchSize: ICoord = {
@@ -32,6 +33,10 @@ export default class Pitch {
     };
   }
 
+  constructor(options = { isYard: false }) {
+    this.distanceCoef = options.isYard ? 1 : this.YARD;
+  }
+
   public calcAngle(coord: ICoord): number {
     const { x, y } = coord;
 
@@ -54,11 +59,11 @@ export default class Pitch {
     return this.calcDistanceBetweenCoord(coord, this.postCoord.center);
   }
 
-  public calcDistanceBetweenCoord(coord1: ICoord, coord2: ICoord): number {
+  public calcDistanceBetweenCoord(coord1: ICoord, coord2: ICoord, isYard = false): number {
     const xSub = coord1.x - coord2.x;
     const ySub = coord1.y - coord2.y;
 
-    const distance = norm([xSub, ySub]) / this.YARD;
+    const distance = norm([xSub, ySub]) / this.distanceCoef;
 
     return round(distance, 2);
   }
@@ -67,7 +72,7 @@ export default class Pitch {
     const { x, y } = coord;
 
     if (headerOrCross) {
-      return round(y / this.YARD, 2);
+      return round(y / this.distanceCoef, 2);
     }
 
     return this.calcDistance({ x, y });
