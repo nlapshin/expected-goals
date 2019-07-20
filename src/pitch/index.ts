@@ -37,6 +37,10 @@ export default class Pitch {
     this.distanceCoef = options.isYard ? 1 : this.YARD;
   }
 
+  public get maxCoord(): ICoord {
+    return this.pitchSize;
+  }
+
   public calcAngle(coord: ICoord): number {
     const { x, y } = coord;
 
