@@ -3,6 +3,11 @@ export interface ICoord {
   y: number;
 }
 
+export interface ICoordOptions {
+  x?: number;
+  y?: number;
+}
+
 export interface ICoordLine {
   start: ICoord;
   end: ICoord;

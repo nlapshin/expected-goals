@@ -3,6 +3,19 @@ import { expect } from 'chai';
 import Pitch from './';
 
 describe('pitch', () => {
+  describe('checkCoord', () => {
+    it('should validate coord value', () => {
+      const pitch = new Pitch({ isYard: true });
+
+      expect(pitch.checkCoord({ x: 1, y: 1 })).to.be.true;
+      expect(pitch.checkCoord({ x: 65, y: 100 })).to.be.true;
+      expect(pitch.checkCoord({ x: 69 })).to.be.false;
+      expect(pitch.checkCoord({ y: 110 })).to.be.false;
+      expect(pitch.checkCoord({ x: NaN })).to.be.false;
+      expect(pitch.checkCoord({ y: NaN })).to.be.false;
+    });
+  });
+
   describe('calcAngle', () => {
     it('should calculate the angle by coords relative to the post', () => {
       const pitch = new Pitch();

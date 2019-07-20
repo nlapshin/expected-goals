@@ -1,6 +1,10 @@
+import { isFinite, has } from 'lodash';
 import { norm, round } from 'mathjs';
 
-import { ICoord, IPostCoord, ICoordLine, ICoordArea } from './model';
+import {
+  ICoord, ICoordOptions,
+  IPostCoord, ICoordLine, ICoordArea,
+} from './model';
 
 export default class Pitch {
   private distanceCoef: number;
@@ -39,6 +43,18 @@ export default class Pitch {
 
   public get maxCoord(): ICoord {
     return this.pitchSize;
+  }
+
+  public checkCoord(coord: ICoordOptions): boolean {
+    if (has(coord, 'x') && !this.checkCoordHandler(coord.x, this.maxCoord.x)) {
+      return false;
+    }
+
+    if (has(coord, 'y') && !this.checkCoordHandler(coord.y, this.maxCoord.y)) {
+      return false;
+    }
+
+    return true;
   }
 
   public calcAngle(coord: ICoord): number {
@@ -144,6 +160,10 @@ export default class Pitch {
       x: round((x * 100) / xLength, 2),
       y: round((y * 100) / yLength, 2),
     };
+  }
+
+  private checkCoordHandler(value, max) {
+    return isFinite(value) && value >= 0 && value <= max;
   }
 
   private calcAngleHandler(coord: ICoord) {

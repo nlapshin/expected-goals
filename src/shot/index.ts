@@ -2,7 +2,6 @@ import { get } from 'dotty';
 import { round } from 'mathjs';
 
 import Pitch from '../pitch';
-import { ICoord } from '../pitch/model';
 
 import { IShot, IShotFlat } from './model';
 
@@ -11,10 +10,6 @@ export default class Shot {
 
   constructor(options = { isYard: false }) {
     this.pitch = new Pitch({ isYard: options.isYard });
-  }
-
-  public get maxCoord(): ICoord {
-    return this.pitch.maxCoord;
   }
 
   public flatShot(shot: IShot): IShotFlat {
