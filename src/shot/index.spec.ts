@@ -18,9 +18,9 @@ describe('Shot', () => {
         shotTime: '1:11',
         shotCoord: { x: 48.35, y: 14.39 },
         shotAngle: 0.59,
-        shotAngleInverse: 1.69,
+        shotAngleInverse: undefined,
         shotDistance: 22.22,
-        shotDistanceInverse: 0.05,
+        shotDistanceInverse: undefined,
         shotType: 'RegularShot',
         shotTypeRegularShot: true,
         shotPart: 'RightFoot',
@@ -31,9 +31,9 @@ describe('Shot', () => {
         shotBigChance: false,
         assistCoord: { start: { x: 61.13, y: 13.44 }, end: { x: 51, y: 15.44 } },
         assistAngle: 0.33,
-        assistAngleInverse: 3.03,
+        assistAngleInverse: undefined,
         assistDistance: 33.11,
-        assistDistanceInverse: 0.03,
+        assistDistanceInverse: undefined,
         assistType: null,
         assistKeyPass: false,
         assistIntentional: false,
@@ -45,9 +45,9 @@ describe('Shot', () => {
         shotTime: '2:23',
         shotCoord: { x: 34, y: 12.08 },
         shotAngle: 1,
-        shotAngleInverse: 1,
+        shotAngleInverse: undefined,
         shotDistance: 13.21,
-        shotDistanceInverse: 0.08,
+        shotDistanceInverse: undefined,
         shotType: 'RegularShot',
         shotTypeRegularShot: true,
         shotPart: 'RightFoot',
@@ -62,7 +62,7 @@ describe('Shot', () => {
 
   describe('prepareShot', () => {
     it('should calculate', () => {
-      const shot = new Shot({ isYard: true });
+      const shot = new Shot({ isYard: true, round: 2 });
 
       expect(shot.prepareShot({
         coord: { y: 12, x: 34 },
@@ -71,7 +71,9 @@ describe('Shot', () => {
         coord: { y: 12, x: 34 },
         meta: { type: 'RegularShot' },
         distance: 12,
+        distanceInverse: 0.08,
         angle: 1,
+        angleInverse: 1,
       });
 
       expect(shot.prepareShot({
@@ -81,7 +83,9 @@ describe('Shot', () => {
         coord: { y: 12, x: 44 },
         meta: { type: 'RegularShot' },
         distance: 15.62,
+        distanceInverse: 0.06,
         angle: 0.69,
+        angleInverse: 1.45,
       });
 
       expect(shot.prepareShot({
@@ -91,7 +95,9 @@ describe('Shot', () => {
         coord: { y: 12, x: 38 },
         meta: { type: 'RegularShot' },
         distance: 12.65,
+        distanceInverse: 0.08,
         angle: 0.98,
+        angleInverse: 1.02,
       });
 
       expect(shot.prepareShot({
@@ -101,7 +107,9 @@ describe('Shot', () => {
         coord: { y: 12, x: 37 },
         meta: { type: 'RegularShot' },
         distance: 12.37,
+        distanceInverse: 0.08,
         angle: 1,
+        angleInverse: 1,
       });
     });
   });

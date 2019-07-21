@@ -18,18 +18,21 @@ export type TAssistType = 'Throughball' | 'AssistAfterThroughball' | 'Pullback' 
 
 export interface IAssist {
   coord: IAssistCoord;
-  angle: number;
-  distance: number;
-  meta: {
-    type: TAssistType;
-    intentional: boolean;
-    keyPass: boolean;
+  angle?: number;
+  angleInverse?: number;
+  distance?: number;
+  distanceInverse?: number;
+  meta?: {
+    type?: TAssistType;
+    intentional?: boolean;
+    keyPass?: boolean;
   };
 }
 
 export interface IDribble {
   coord: ICoord;
-  distance: number;
+  distance?: number;
+  distanceInverse?: number;
 }
 
 export interface IShot {
@@ -38,7 +41,9 @@ export interface IShot {
   time?: string;
   coord: ICoord;
   angle?: number;
+  angleInverse?: number;
   distance?: number;
+  distanceInverse?: number;
   meta: {
     type: TShotType,
     part?: TShotPart,

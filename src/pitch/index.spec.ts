@@ -5,7 +5,7 @@ import Pitch from './';
 describe('pitch', () => {
   describe('checkCoord', () => {
     it('should validate coord value', () => {
-      const pitch = new Pitch({ isYard: true });
+      const pitch = new Pitch({ isYard: true, round: 2 });
 
       expect(pitch.checkCoord({ x: 1, y: 1 })).to.be.true;
       expect(pitch.checkCoord({ x: 65, y: 100 })).to.be.true;
@@ -52,9 +52,9 @@ describe('pitch', () => {
     it('should calculate the shot distance by Caley metric', () => {
       const pitch = new Pitch();
 
-      expect(pitch.calcShotDistanceByCaley({ x: 34, y: 20 })).to.equal(21.87);
-      expect(pitch.calcShotDistanceByCaley({ x: 50, y: 30 })).to.equal(37.18);
-      expect(pitch.calcShotDistanceByCaley({ x: 50, y: 30 }, true)).to.equal(32.81);
+      expect(pitch.calcShotDistanceByCaley({ x: 34, y: 20 }, true)).to.equal(21.87);
+      expect(pitch.calcShotDistanceByCaley({ x: 50, y: 30 }, true)).to.equal(37.18);
+      expect(pitch.calcShotDistanceByCaley({ x: 50, y: 30 })).to.equal(32.81);
     });
   });
 

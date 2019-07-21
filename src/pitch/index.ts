@@ -7,6 +7,7 @@ import {
 } from './model';
 
 export default class Pitch {
+  private roundCoef: number;
   private distanceCoef: number;
   private YARD: number = 0.9144;
 
@@ -37,7 +38,8 @@ export default class Pitch {
     };
   }
 
-  constructor(options = { isYard: false }) {
+  constructor(options = { isYard: false, round: 2 }) {
+    this.roundCoef = options.round ? options.round : 2;
     this.distanceCoef = options.isYard ? 1 : this.YARD;
   }
 
@@ -85,17 +87,17 @@ export default class Pitch {
 
     const distance = norm([xSub, ySub]) / this.distanceCoef;
 
-    return round(distance, 2);
+    return this.round(distance);
   }
 
   public calcShotDistanceByCaley(coord: ICoord, headerOrCross: boolean = false): number {
     const { x, y } = coord;
 
     if (headerOrCross) {
-      return round(y / this.distanceCoef, 2);
+      return this.calcDistance({ x, y });
     }
 
-    return this.calcDistance({ x, y });
+    return this.round(y / this.distanceCoef);
   }
 
   public calcDribbleDistanceByCaley(dribbleCoord: ICoord, shotCoord: ICoord): number {
@@ -147,8 +149,8 @@ export default class Pitch {
     const { x: xLength, y: yLength } = this.pitchSize;
 
     return {
-      x: round((x * xLength) / 100, 2),
-      y: round((y * yLength) / 100, 2),
+      x: this.round((x * xLength) / 100),
+      y: this.round((y * yLength) / 100),
     };
   }
 
@@ -157,9 +159,17 @@ export default class Pitch {
     const { x: xLength, y: yLength } = this.pitchSize;
 
     return {
-      x: round((x * 100) / xLength, 2),
-      y: round((y * 100) / yLength, 2),
+      x: this.round((x * 100) / xLength),
+      y: this.round((y * 100) / yLength),
     };
+  }
+
+  public inverseDistance(num: number) {
+    return this.round(1 / num);
+  }
+
+  public inverseAngle(num: number) {
+    return this.round(1 / num);
   }
 
   private checkCoordHandler(value, max) {
@@ -169,6 +179,10 @@ export default class Pitch {
   private calcAngleHandler(coord: ICoord) {
     const { x, y } = coord;
 
-    return round(2 * Math.atan2(y, x) / Math.PI, 2);
+    return this.round(2 * Math.atan2(y, x) / Math.PI);
+  }
+
+  private round(value: number): number {
+    return round(value, this.roundCoef);
   }
 }

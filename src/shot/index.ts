@@ -1,5 +1,4 @@
 import { get } from 'dotty';
-import { round } from 'mathjs';
 
 import Pitch from '../pitch';
 
@@ -8,8 +7,8 @@ import { IShot, IShotFlat } from './model';
 export default class Shot {
   private pitch: Pitch;
 
-  constructor(options = { isYard: false }) {
-    this.pitch = new Pitch({ isYard: options.isYard });
+  constructor(options = { isYard: false, round: 2 }) {
+    this.pitch = new Pitch({ isYard: options.isYard, round: options.round });
   }
 
   public flatShot(shot: IShot): IShotFlat {
@@ -24,9 +23,9 @@ export default class Shot {
       shotTime: shot.time,
       shotCoord: shot.coord,
       shotAngle: shot.angle,
-      shotAngleInverse: this.inverseNumber(shot.angle),
+      shotAngleInverse: shot.angleInverse,
       shotDistance: shot.distance,
-      shotDistanceInverse: this.inverseNumber(shot.distance),
+      shotDistanceInverse: shot.distanceInverse,
       shotType,
       shotPart,
       shotFollowing,
@@ -60,9 +59,9 @@ export default class Shot {
         ...{
           assistCoord: assist.coord,
           assistAngle: assist.angle,
-          assistAngleInverse: this.inverseNumber(assist.angle),
+          assistAngleInverse: assist.angleInverse,
           assistDistance: assist.distance,
-          assistDistanceInverse: this.inverseNumber(assist.distance),
+          assistDistanceInverse: assist.distanceInverse,
           assistType,
           assistIntentional: get(assist,   'meta.intentional'),
           assistKeyPass: get(assist, 'meta.keyPass'),
@@ -82,6 +81,7 @@ export default class Shot {
         ...{
           dribbleCoord: dribble.coord,
           dribbleDistance: dribble.distance,
+          dribbleDistanceInverse: dribble.distanceInverse,
         },
       };
     }
@@ -100,8 +100,48 @@ export default class Shot {
       }
     }
 
+    if (!shot.distanceInverse) {
+      shot.distanceInverse = this.pitch.inverseDistance(shot.distance);
+    }
+
     if (!shot.angle) {
       shot.angle = this.pitch.calcAngle(shot.coord);
+    }
+
+    if (!shot.angleInverse) {
+      shot.angleInverse = this.pitch.inverseAngle(shot.angle);
+    }
+
+    if (shot.meta && shot.meta.assist) {
+      const assist = shot.meta.assist;
+
+      if (!assist.distance) {
+        assist.distance = this.pitch.calcDistance(assist.coord.start);
+      }
+
+      if (!assist.distanceInverse) {
+        assist.distanceInverse = this.pitch.inverseDistance(assist.distance);
+      }
+
+      if (!assist.angle) {
+        assist.angle = this.pitch.calcAngle(assist.coord.start);
+      }
+
+      if (!assist.angleInverse) {
+        assist.angleInverse = this.pitch.inverseAngle(assist.angleInverse);
+      }
+    }
+
+    if (shot.meta && shot.meta.dribble) {
+      const dribble = shot.meta.dribble;
+
+      if (!dribble.distance) {
+        dribble.distance = this.pitch.calcDistance(dribble.coord);
+      }
+
+      if (!dribble.distanceInverse) {
+        dribble.distanceInverse = this.pitch.inverseDistance(dribble.distance);
+      }
     }
 
     return shot;
@@ -113,9 +153,5 @@ export default class Shot {
     return type === 'CrossAndHeaderShot' ||
       type === 'CrossAndFeetShot' ||
       type === 'HeaderShot';
-  }
-
-  private inverseNumber(num: number) {
-    return round(1 / num, 2);
   }
 }
