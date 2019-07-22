@@ -27,11 +27,20 @@ function calcXgHandler(params, weights) {
   const coeficients = weightParams.map((param) => {
     const weight = weights[param];
     const value = xgParamValue(param, params);
+    const res = weight * value;
 
-    return [ param, weight, value ];
+    return [ param, weight, value, res ];
   });
 
-  const sum = coeficients.reduce((res, [, weight, value]) => res + ( weight * value ), 0);
+  coeficients.forEach(([param, weight, value, result]) => {
+    if (result === 0) {
+      return;
+    }
+
+    console.log(`${param}. Weight: ${weight}. Value: ${value}. Result: ${result}`);
+  });
+
+  const sum = coeficients.reduce((res, [, , , result]) => res + result, 0);
   const xg = expit(sum);
 
   return round(xg, 2);
