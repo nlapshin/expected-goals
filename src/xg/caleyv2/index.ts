@@ -2,7 +2,7 @@ import { round } from 'mathjs';
 
 import { TxG } from './../model';
 import { IShot } from '../../shot/model';
-import { xgWeightByCaley, xgParamValue, expit } from './helper';
+import { xgWeight, xgParamValue, expit } from './helper';
 
 import Shot from '../../shot';
 const shotModule = new Shot();
@@ -11,9 +11,12 @@ const calcXg = (shot: IShot): TxG => {
   const flatShot = shotModule.flatShot(shot);
   const type = flatShot.shotType;
 
-  const weights = xgWeightByCaley(type);
+  const weights = xgWeight(type);
+  const result = calcXgHandler(flatShot, weights);
 
-  return calcXgHandler(flatShot, weights);
+  console.log(`Type: ${type}; XG: ${result}`);
+
+  return result;
 };
 
 export default calcXg;

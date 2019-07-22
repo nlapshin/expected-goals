@@ -4,6 +4,17 @@ import {
   AttackType, AssistType,
 } from '../../../shot/model';
 
+export function xgPossibleShotTypes() {
+  return [
+    ShotType.RegularShot,
+    ShotType.DribbleKeeperShot,
+    ShotType.DirectFreeKickShot,
+    ShotType.CrossAndHeaderShot,
+    ShotType.CrossAndFeetShot,
+    ShotType.HeaderShot,
+  ];
+}
+
 export function xgPossibleShotParams(shotType: TShotType) {
   if (shotType === ShotType.DribbleKeeperShot) {
     return {
@@ -104,7 +115,7 @@ export function xgPossibleShotParams(shotType: TShotType) {
   };
 }
 
-export function xgWeightByCaley(shotType: TShotType) {
+export function xgWeight(shotType: TShotType) {
   if (shotType === ShotType.DribbleKeeperShot) {
     return {
       general: -0.61,
