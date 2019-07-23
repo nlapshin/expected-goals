@@ -22,8 +22,8 @@ export function xgPossibleShotParams(shotType: TShotType) {
       distanceInverse: true,
       angle: true,
       meta: {
-        bitChance: true,
-        following: [ ShotFollowing.Error ],
+        bigChance: true,
+        following: [ null, ShotFollowing.Error ],
       },
     };
   }
@@ -42,9 +42,9 @@ export function xgPossibleShotParams(shotType: TShotType) {
       distanceInverse: true,
       angle: true,
       meta: {
-        bitChance: true,
-        following: [ ShotFollowing.Error, ShotFollowing.Corner ],
-        attack: [ AttackType.FastBreak, AttackType.SetPiece ],
+        bigChance: true,
+        following: [ null, ShotFollowing.Error, ShotFollowing.Corner ],
+        attack: [ AttackType.OpenPlay, AttackType.FastBreak, AttackType.SetPiece ],
         assist: {
           distance: true,
           angle: true,
@@ -59,13 +59,13 @@ export function xgPossibleShotParams(shotType: TShotType) {
       distanceInverse: true,
       angle: true,
       meta: {
-        bitChance: true,
-        following: [ ShotFollowing.Error, ShotFollowing.Corner ],
-        attack: [ AttackType.FastBreak, AttackType.SetPiece ],
+        bigChance: true,
+        following: [ null, ShotFollowing.Error, ShotFollowing.Corner ],
+        attack: [ AttackType.OpenPlay, AttackType.FastBreak, AttackType.SetPiece ],
         assist: {
           distance: true,
           angle: true,
-          type: [ AssistType.AssistAcrossFace ],
+          type: [ null, AssistType.AssistAcrossFace ],
         },
       },
     };
@@ -77,15 +77,15 @@ export function xgPossibleShotParams(shotType: TShotType) {
       distanceInverse: true,
       angle: true,
       meta: {
-        bitChance: true,
+        bigChance: true,
         rebounse: true,
-        part: [ ShotPart.OtherBodyPart ],
-        following: [ ShotFollowing.Error ],
-        attack: [ AttackType.FastBreak, AttackType.EstablishedPossession ],
+        part: [ ShotPart.Head, ShotPart.OtherBodyPart ],
+        following: [ null, ShotFollowing.Error ],
+        attack: [ AttackType.OpenPlay, AttackType.FastBreak, AttackType.EstablishedPossession ],
         assist: {
           distance: true,
           angle: true,
-          type: [ AssistType.Throughball ],
+          type: [ null, AssistType.Throughball ],
         },
       },
     };
@@ -96,15 +96,15 @@ export function xgPossibleShotParams(shotType: TShotType) {
     distanceInverse: true,
     angle: true,
     meta: {
-      bitChance: true,
+      bigChance: true,
       rebound: true,
-      following: [ ShotFollowing.Error, ShotFollowing.Corner, ShotFollowing.Dribble ],
-      attack: [ AttackType.FastBreak, AttackType.EstablishedPossession ],
+      following: [ null, ShotFollowing.Error, ShotFollowing.Corner, ShotFollowing.Dribble ],
+      attack: [ AttackType.OpenPlay, AttackType.FastBreak, AttackType.EstablishedPossession ],
       assist: {
         distance: true,
         angle: true,
         type: [
-          AssistType.Throughball, AssistType.AssistAfterThroughball,
+          null, AssistType.Throughball, AssistType.AssistAfterThroughball,
           AssistType.AssistAcrossFace, AssistType.Pullback,
         ],
       },
