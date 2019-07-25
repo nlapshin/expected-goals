@@ -21,10 +21,8 @@ export function xgPossibleShotParams(shotType: TShotType) {
       distance: true,
       distanceInverse: true,
       angle: true,
-      meta: {
-        bigChance: true,
-        following: [ null, ShotFollowing.Error ],
-      },
+      bigChance: true,
+      following: [ null, ShotFollowing.Error ],
     };
   }
 
@@ -41,14 +39,12 @@ export function xgPossibleShotParams(shotType: TShotType) {
       distance: true,
       distanceInverse: true,
       angle: true,
-      meta: {
-        bigChance: true,
-        following: [ null, ShotFollowing.Error, ShotFollowing.Corner ],
-        attack: [ AttackType.OpenPlay, AttackType.FastBreak, AttackType.SetPiece ],
-        assist: {
-          distance: true,
-          angle: true,
-        },
+      bigChance: true,
+      following: [ null, ShotFollowing.Error, ShotFollowing.Corner ],
+      attack: [ AttackType.OpenPlay, AttackType.FastBreak, AttackType.SetPiece ],
+      assist: {
+        distance: true,
+        angle: true,
       },
     };
   }
@@ -58,15 +54,13 @@ export function xgPossibleShotParams(shotType: TShotType) {
       distance: true,
       distanceInverse: true,
       angle: true,
-      meta: {
-        bigChance: true,
-        following: [ null, ShotFollowing.Error, ShotFollowing.Corner ],
-        attack: [ AttackType.OpenPlay, AttackType.FastBreak, AttackType.SetPiece ],
-        assist: {
-          distance: true,
-          angle: true,
-          type: [ null, AssistType.AssistAcrossFace ],
-        },
+      bigChance: true,
+      following: [ null, ShotFollowing.Error, ShotFollowing.Corner ],
+      attack: [ AttackType.OpenPlay, AttackType.FastBreak, AttackType.SetPiece ],
+      assist: {
+        distance: true,
+        angle: true,
+        type: [ null, AssistType.AssistAcrossFace ],
       },
     };
   }
@@ -76,17 +70,15 @@ export function xgPossibleShotParams(shotType: TShotType) {
       distance: true,
       distanceInverse: true,
       angle: true,
-      meta: {
-        bigChance: true,
-        rebounse: true,
-        part: [ ShotPart.Head, ShotPart.OtherBodyPart ],
-        following: [ null, ShotFollowing.Error ],
-        attack: [ AttackType.OpenPlay, AttackType.FastBreak, AttackType.EstablishedPossession ],
-        assist: {
-          distance: true,
-          angle: true,
-          type: [ null, AssistType.Throughball ],
-        },
+      bigChance: true,
+      rebounse: true,
+      part: [ ShotPart.Head, ShotPart.OtherBodyPart ],
+      following: [ null, ShotFollowing.Error ],
+      attack: [ AttackType.OpenPlay, AttackType.FastBreak, AttackType.EstablishedPossession ],
+      assist: {
+        distance: true,
+        angle: true,
+        type: [ null, AssistType.Throughball ],
       },
     };
   }
@@ -95,22 +87,20 @@ export function xgPossibleShotParams(shotType: TShotType) {
     distance: true,
     distanceInverse: true,
     angle: true,
-    meta: {
-      bigChance: true,
-      rebound: true,
-      following: [ null, ShotFollowing.Error, ShotFollowing.Corner, ShotFollowing.Dribble ],
-      attack: [ AttackType.OpenPlay, AttackType.FastBreak, AttackType.EstablishedPossession ],
-      assist: {
-        distance: true,
-        angle: true,
-        type: [
-          null, AssistType.Throughball, AssistType.AssistAfterThroughball,
-          AssistType.AssistAcrossFace, AssistType.Pullback,
-        ],
-      },
-      dribble: {
-        distance: true,
-      },
+    bigChance: true,
+    rebound: true,
+    following: [ null, ShotFollowing.Error, ShotFollowing.Corner, ShotFollowing.Dribble ],
+    attack: [ AttackType.OpenPlay, AttackType.FastBreak, AttackType.EstablishedPossession ],
+    assist: {
+      distance: true,
+      angle: true,
+      type: [
+        null, AssistType.Throughball, AssistType.AssistAfterThroughball,
+        AssistType.AssistAcrossFace, AssistType.Pullback,
+      ],
+    },
+    dribble: {
+      distance: true,
     },
   };
 }
@@ -207,7 +197,7 @@ export function xgWeight(shotType: TShotType) {
     assistAngle: 0.12,
     assistDistanceInverse: 2.18,
     dribbleDistance: 0.14,
-    gameStateSignification: 0.03,
+    gameState: 0.03,
   };
 }
 

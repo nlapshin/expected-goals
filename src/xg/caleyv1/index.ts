@@ -8,7 +8,7 @@ import { xgWeight } from './helper';
 
 const calcXg = (shot: IShot): TxG => {
   const distance = shot.distance;
-  const type = get(shot, 'meta.type');
+  const type = shot.type;
 
   const weight = xgWeight(type);
   const result = weight.coef * Math.exp(weight.exp * distance);
