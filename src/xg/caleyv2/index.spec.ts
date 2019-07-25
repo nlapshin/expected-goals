@@ -156,7 +156,7 @@ describe('xg by caley: version 2', () => {
             },
           },
         },
-        expected: 0.3,
+        expected: 0.38,
       },
       {
         label: 'simple shot with big chance and following error',

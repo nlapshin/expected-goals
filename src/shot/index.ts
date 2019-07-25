@@ -90,58 +90,32 @@ export default class Shot {
   }
 
   public prepareShot(shot: IShot, byCaley = false): IShot {
-    if (!shot.distance) {
-      if (byCaley) {
-        const headerOrCross = this.headerOrCross(shot);
+    const headerOrCross = this.headerOrCross(shot);
 
-        shot.distance = this.pitch.calcShotDistanceByCaley(shot.coord, headerOrCross);
-      } else {
-        shot.distance = this.pitch.calcDistance(shot.coord);
-      }
+    shot = {
+      ...shot,
+      ...this.pitch.prepareShotData(shot.coord, byCaley, headerOrCross),
+    };
+
+    if (shot.meta.assist) {
+      shot.meta.assist = {
+        ...shot.meta.assist,
+        ...this.pitch.prepareAssistData(shot.meta.assist.coord, byCaley, headerOrCross),
+      };
     }
 
-    if (!shot.distanceInverse) {
-      shot.distanceInverse = this.pitch.inverseDistance(shot.distance);
+    if (shot.meta.assist) {
+      shot.meta.assist = {
+        ...shot.meta.assist,
+        ...this.pitch.prepareAssistData(shot.meta.assist.coord, byCaley, headerOrCross),
+      };
     }
 
-    if (!shot.angle) {
-      shot.angle = this.pitch.calcAngle(shot.coord);
-    }
-
-    if (!shot.angleInverse) {
-      shot.angleInverse = this.pitch.inverseAngle(shot.angle);
-    }
-
-    if (shot.meta && shot.meta.assist) {
-      const assist = shot.meta.assist;
-
-      if (!assist.distance) {
-        assist.distance = this.pitch.calcDistance(assist.coord.start);
-      }
-
-      if (!assist.distanceInverse) {
-        assist.distanceInverse = this.pitch.inverseDistance(assist.distance);
-      }
-
-      if (!assist.angle) {
-        assist.angle = this.pitch.calcAngle(assist.coord.start);
-      }
-
-      if (!assist.angleInverse) {
-        assist.angleInverse = this.pitch.inverseAngle(assist.angleInverse);
-      }
-    }
-
-    if (shot.meta && shot.meta.dribble) {
-      const dribble = shot.meta.dribble;
-
-      if (!dribble.distance) {
-        dribble.distance = this.pitch.calcDistance(dribble.coord);
-      }
-
-      if (!dribble.distanceInverse) {
-        dribble.distanceInverse = this.pitch.inverseDistance(dribble.distance);
-      }
+    if (shot.meta.dribble) {
+      shot.meta.dribble = {
+        ...shot.meta.dribble,
+        ...this.pitch.prepareDribbleData(shot.meta.dribble.coord),
+      };
     }
 
     return shot;

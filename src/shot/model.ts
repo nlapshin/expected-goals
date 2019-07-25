@@ -1,9 +1,4 @@
-import { ICoord } from '../pitch/model';
-
-export interface IAssistCoord {
-  start: ICoord;
-  end: ICoord;
-}
+import { ICoord, ICoordLine } from '../pitch/model';
 
 export type TShotType = 'RegularShot' | 'DirectFreeKickShot' |
   'CrossAndHeaderShot' | 'CrossAndFeetShot' | 'HeaderShot' | 'DribbleShot' | 'DribbleKeeperShot';
@@ -57,7 +52,7 @@ export const AssistType = {
 };
 
 export interface IAssist {
-  coord: IAssistCoord;
+  coord: ICoordLine;
   angle?: number;
   angleInverse?: number;
   distance?: number;
@@ -70,7 +65,7 @@ export interface IAssist {
 }
 
 export interface IDribble {
-  coord: ICoord;
+  coord: ICoordLine;
   distance?: number;
   distanceInverse?: number;
 }
@@ -109,7 +104,7 @@ export interface IShotFlat {
   shotFollowing?: TShotFollowing;
   shotAttack?: TAttackType;
   shotBigChance?: boolean;
-  assistCoord?: IAssistCoord;
+  assistCoord?: ICoordLine;
   assistAngle?: number;
   assistAngleInverse?: number;
   assistDistance?: number;
@@ -117,6 +112,6 @@ export interface IShotFlat {
   assistType?: TAssistType;
   assistIntentional?: boolean;
   assistKeyPass?: boolean;
-  dribbleCoord?: ICoord;
+  dribbleCoord?: ICoordLine;
   dribbleDistance?: number;
 }

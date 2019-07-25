@@ -25,3 +25,22 @@ export interface IPostCoord {
   right: ICoord;
   center: ICoord;
 }
+
+export interface IShotPitchData {
+  distance: number;
+  distanceInverse: number;
+  angle: number;
+  angleInverse: number;
+}
+
+export interface IAssistPitchData {
+  distance: number;
+  distanceInverse: number;
+  angle: number;
+  angleInverse: number;
+}
+
+export interface IDribblePitchData {
+  distance: number;
+  distanceInverse: number;
+}
