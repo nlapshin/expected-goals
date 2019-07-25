@@ -13,7 +13,7 @@ describe('xg by caley: version 2', () => {
         label: 'simple shot',
         input: {
           coord: { x: 34, y: 12 },
-          meta: {type: 'RegularShot' as TShotType},
+          type: 'RegularShot' as TShotType,
         },
         expected: 0.11,
       },
@@ -21,7 +21,7 @@ describe('xg by caley: version 2', () => {
         label: 'simple shot 2',
         input: {
           coord: { x: 30, y: 7 },
-          meta: {type: 'RegularShot' as TShotType},
+          type: 'RegularShot' as TShotType,
         },
         expected: 0.16,
       },
@@ -29,7 +29,7 @@ describe('xg by caley: version 2', () => {
         label: 'simple shot from 6-yard-box',
         input: {
           coord: { x: 34, y: 5 },
-          meta: {type: 'RegularShot' as TShotType},
+          type: 'RegularShot' as TShotType,
         },
         expected: 0.21,
       },
@@ -37,7 +37,7 @@ describe('xg by caley: version 2', () => {
         label: 'simple shot from goal line',
         input: {
           coord: { x: 34, y: 0.5 },
-          meta: {type: 'RegularShot' as TShotType},
+          type: 'RegularShot' as TShotType,
         },
         expected: 0.74,
       },
@@ -45,10 +45,8 @@ describe('xg by caley: version 2', () => {
         label: 'simple shot with big chance',
         input: {
           coord: { x: 34, y: 12 },
-          meta: {
-            type: 'RegularShot' as TShotType,
-            bigChance: true,
-          },
+          type: 'RegularShot' as TShotType,
+          bigChance: true,
         },
         expected: 0.28,
       },
@@ -56,10 +54,8 @@ describe('xg by caley: version 2', () => {
         label: 'simple shot from 6-yard-box with big chance',
         input: {
           coord: { x: 34, y: 5 },
-          meta: {
-            type: 'RegularShot' as TShotType,
-            bigChance: true,
-          },
+          type: 'RegularShot' as TShotType,
+          bigChance: true,
         },
         expected: 0.47,
       },
@@ -67,10 +63,8 @@ describe('xg by caley: version 2', () => {
         label: 'simple shot from goal line with big chance',
         input: {
           coord: { x: 34, y: 0.5 },
-          meta: {
-            type: 'RegularShot' as TShotType,
-            bigChance: true,
-          },
+          type: 'RegularShot' as TShotType,
+          bigChance: true,
         },
         expected: 0.91,
       },
@@ -78,9 +72,7 @@ describe('xg by caley: version 2', () => {
         label: 'sharp angle shot from goal line',
         input: {
           coord: { x: 44, y: 0.5 },
-          meta: {
-            type: 'RegularShot' as TShotType,
-          },
+          type: 'RegularShot' as TShotType,
         },
         expected: 0,
       },
@@ -88,9 +80,7 @@ describe('xg by caley: version 2', () => {
         label: 'sharp angle shot from goal line',
         input: {
           coord: { x: 2, y: 2 },
-          meta: {
-            type: 'RegularShot' as TShotType,
-          },
+          type: 'RegularShot' as TShotType,
         },
         expected: 0,
       },
@@ -98,11 +88,9 @@ describe('xg by caley: version 2', () => {
         label: 'simple shot after assist',
         input: {
           coord: { x: 34, y: 12 },
-          meta: {
-            type: 'RegularShot' as TShotType,
-            assist: {
-              coord: { start: { x: 34, y: 19 } },
-            },
+          type: 'RegularShot' as TShotType,
+          assist: {
+            coord: { start: { x: 34, y: 19 } },
           },
         },
         expected: 0.13,
@@ -111,15 +99,11 @@ describe('xg by caley: version 2', () => {
         label: 'simple shot with big chance, after througball assist',
         input: {
           coord: { x: 34, y: 12 },
-          meta: {
-            type: 'RegularShot' as TShotType,
-            bigChance: true,
-            assist: {
-              coord: { start: { x: 34, y: 18 } },
-              meta: {
-                type: 'Throughball',
-              },
-            },
+          type: 'RegularShot' as TShotType,
+          bigChance: true,
+          assist: {
+            coord: { start: { x: 34, y: 18 } },
+            type: 'Throughball',
           },
         },
         expected: 0.44,
@@ -128,15 +112,11 @@ describe('xg by caley: version 2', () => {
         label: 'simple shot with big chance, after assist after througball ',
         input: {
           coord: { x: 34, y: 12 },
-          meta: {
-            type: 'RegularShot' as TShotType,
-            bigChance: true,
-            assist: {
-              coord: { start: { x: 34, y: 18 } },
-              meta: {
-                type: 'AssistAfterThroughball',
-              },
-            },
+          type: 'RegularShot' as TShotType,
+          bigChance: true,
+          assist: {
+            coord: { start: { x: 34, y: 18 } },
+            type: 'AssistAfterThroughball',
           },
         },
         expected: 0.49,
@@ -145,15 +125,11 @@ describe('xg by caley: version 2', () => {
         label: 'simple shot with big chance, after assist after pullback',
         input: {
           coord: { x: 34, y: 12 },
-          meta: {
-            type: 'RegularShot' as TShotType,
-            bigChance: true,
-            assist: {
-              coord: { start: { x: 44, y: 4 } },
-              meta: {
-                type: 'Pullback',
-              },
-            },
+          type: 'RegularShot' as TShotType,
+          bigChance: true,
+          assist: {
+            coord: { start: { x: 44, y: 4 } },
+            type: 'Pullback',
           },
         },
         expected: 0.38,
@@ -162,11 +138,9 @@ describe('xg by caley: version 2', () => {
         label: 'simple shot with big chance and following error',
         input: {
           coord: { x: 34, y: 12 },
-          meta: {
-            type: 'RegularShot' as TShotType,
-            bigChance: true,
-            following: 'Error',
-          },
+          type: 'RegularShot' as TShotType,
+          bigChance: true,
+          following: 'Error',
         },
         expected: 0.54,
       },
@@ -174,9 +148,7 @@ describe('xg by caley: version 2', () => {
         label: 'direct free kick shot',
         input: {
           coord: { x: 34, y: 22 },
-          meta: {
-            type: 'DirectFreeKickShot' as TShotType,
-          },
+          type: 'DirectFreeKickShot' as TShotType,
         },
         expected: 0.11,
       },
@@ -184,9 +156,7 @@ describe('xg by caley: version 2', () => {
         label: 'direct free kick shot',
         input: {
           coord: { x: 34, y: 25 },
-          meta: {
-            type: 'DirectFreeKickShot' as TShotType,
-          },
+          type: 'DirectFreeKickShot' as TShotType,
         },
         expected: 0.08,
       },
@@ -194,9 +164,7 @@ describe('xg by caley: version 2', () => {
         label: 'simple header shot after cross',
         input: {
           coord: { x: 34, y: 8 },
-          meta: {
-            type: 'CrossAndHeaderShot' as TShotType,
-          },
+          type: 'CrossAndHeaderShot' as TShotType,
         },
         expected: 0.08,
       },
@@ -204,10 +172,8 @@ describe('xg by caley: version 2', () => {
         label: 'simple header shot after cross with big chance',
         input: {
           coord: { x: 34, y: 8 },
-          meta: {
-            type: 'CrossAndHeaderShot' as TShotType,
-            bigChance: true,
-          },
+          type: 'CrossAndHeaderShot' as TShotType,
+          bigChance: true,
         },
         expected: 0.23,
       },
@@ -215,11 +181,9 @@ describe('xg by caley: version 2', () => {
         label: 'simple header shot after cross with big chance, after set piece',
         input: {
           coord: { x: 34, y: 8 },
-          meta: {
-            type: 'CrossAndHeaderShot' as TShotType,
-            bigChance: true,
-            attack: 'SetPiece',
-          },
+          type: 'CrossAndHeaderShot' as TShotType,
+          bigChance: true,
+          attack: 'SetPiece',
         },
         expected: 0.25,
       },
@@ -227,11 +191,9 @@ describe('xg by caley: version 2', () => {
         label: 'simple header shot after cross with big chance, after factbreak',
         input: {
           coord: { x: 34, y: 8 },
-          meta: {
-            type: 'CrossAndHeaderShot' as TShotType,
-            bigChance: true,
-            attack: 'Fastbreak',
-          },
+          type: 'CrossAndHeaderShot' as TShotType,
+          bigChance: true,
+          attack: 'Fastbreak',
         },
         expected: 0.26,
       },
@@ -239,10 +201,8 @@ describe('xg by caley: version 2', () => {
         label: 'simple header shot after corner',
         input: {
           coord: { x: 34, y: 8 },
-          meta: {
-            type: 'CrossAndHeaderShot' as TShotType,
-            following: 'Corner',
-          },
+          type: 'CrossAndHeaderShot' as TShotType,
+          following: 'Corner',
         },
         expected: 0.06,
       },
@@ -250,11 +210,9 @@ describe('xg by caley: version 2', () => {
         label: 'simple header shot after corner caused by another part of the body',
         input: {
           coord: { x: 34, y: 8 },
-          meta: {
-            type: 'CrossAndHeaderShot' as TShotType,
-            part: 'OtherBodyPart',
-            following: 'Corner',
-          },
+          type: 'CrossAndHeaderShot' as TShotType,
+          part: 'OtherBodyPart',
+          following: 'Corner',
         },
         expected: 0.05,
       },
@@ -262,11 +220,9 @@ describe('xg by caley: version 2', () => {
         label: 'simple header shot after cross with big chance, after corner',
         input: {
           coord: { x: 34, y: 8 },
-          meta: {
-            type: 'CrossAndHeaderShot' as TShotType,
-            bigChance: true,
-            following: 'Corner',
-          },
+          type: 'CrossAndHeaderShot' as TShotType,
+          bigChance: true,
+          following: 'Corner',
         },
         expected: 0.19,
       },
@@ -274,9 +230,7 @@ describe('xg by caley: version 2', () => {
         label: 'simple feet shot after cross',
         input: {
           coord: { x: 34, y: 8 },
-          meta: {
-            type: 'CrossAndFeetShot' as TShotType,
-          },
+          type: 'CrossAndFeetShot' as TShotType,
         },
         expected: 0.11,
       },
@@ -284,10 +238,8 @@ describe('xg by caley: version 2', () => {
         label: 'simple feet shot after corner',
         input: {
           coord: { x: 34, y: 8 },
-          meta: {
-            type: 'CrossAndFeetShot' as TShotType,
-            following: 'Corner',
-          },
+          type: 'CrossAndFeetShot' as TShotType,
+          following: 'Corner',
         },
         expected: 0.1,
       },
@@ -295,10 +247,8 @@ describe('xg by caley: version 2', () => {
         label: 'simple feet shot after cross with bigChance',
         input: {
           coord: { x: 34, y: 8 },
-          meta: {
-            type: 'CrossAndFeetShot' as TShotType,
-            bigChance: true,
-          },
+          type: 'CrossAndFeetShot' as TShotType,
+          bigChance: true,
         },
         expected: 0.3,
       },
@@ -306,11 +256,9 @@ describe('xg by caley: version 2', () => {
         label: 'simple feet shot after cross with bigChance after fastbreak attack',
         input: {
           coord: { x: 34, y: 8 },
-          meta: {
-            type: 'CrossAndFeetShot' as TShotType,
-            bigChance: true,
-            attack: 'Fastbreak',
-          },
+          type: 'CrossAndFeetShot' as TShotType,
+          bigChance: true,
+          attack: 'Fastbreak',
         },
         expected: 0.36,
       },
@@ -318,14 +266,12 @@ describe('xg by caley: version 2', () => {
         label: 'simple feet shot after cross with bigChance after fastbreak attack',
         input: {
           coord: { x: 34, y: 8 },
-          meta: {
-            type: 'CrossAndFeetShot' as TShotType,
-            bigChance: true,
-            attack: 'Fastbreak',
-            assist: {
-              coord: {
-                start: { x: 50, y: 12 },
-              },
+          type: 'CrossAndFeetShot' as TShotType,
+          bigChance: true,
+          attack: 'Fastbreak',
+          assist: {
+            coord: {
+              start: { x: 50, y: 12 },
             },
           },
         },

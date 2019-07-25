@@ -37,6 +37,8 @@ describe('Shot', () => {
         assistType: null,
         assistKeyPass: false,
         assistIntentional: false,
+        gameState: undefined,
+        league: undefined,
       });
 
       expect(shot.flatShot(shotsSet[1])).to.deep.equal({
@@ -56,6 +58,8 @@ describe('Shot', () => {
         shotAttack: 'Penalty',
         shotAttackPenalty: true,
         shotBigChance: true,
+        gameState: undefined,
+        league: undefined,
       });
     });
   });
@@ -66,10 +70,10 @@ describe('Shot', () => {
 
       expect(shot.prepareShot({
         coord: { y: 12, x: 34 },
-        meta: { type: 'RegularShot' as TShotType },
+        type: 'RegularShot' as TShotType,
       })).to.deep.equal({
         coord: { y: 12, x: 34 },
-        meta: { type: 'RegularShot' },
+        type: 'RegularShot',
         distance: 12,
         distanceInverse: 0.08,
         angle: 1,
@@ -78,10 +82,10 @@ describe('Shot', () => {
 
       expect(shot.prepareShot({
         coord: { y: 12, x: 44 },
-        meta: { type: 'RegularShot' as TShotType },
+        type: 'RegularShot' as TShotType,
       })).to.deep.equal({
         coord: { y: 12, x: 44 },
-        meta: { type: 'RegularShot' },
+        type: 'RegularShot',
         distance: 15.62,
         distanceInverse: 0.06,
         angle: 0.69,
@@ -90,10 +94,10 @@ describe('Shot', () => {
 
       expect(shot.prepareShot({
         coord: { y: 12, x: 38 },
-        meta: { type: 'RegularShot' as TShotType },
+        type: 'RegularShot' as TShotType,
       })).to.deep.equal({
         coord: { y: 12, x: 38 },
-        meta: { type: 'RegularShot' },
+        type: 'RegularShot',
         distance: 12.65,
         distanceInverse: 0.08,
         angle: 0.98,
@@ -102,10 +106,10 @@ describe('Shot', () => {
 
       expect(shot.prepareShot({
         coord: { y: 12, x: 37 },
-        meta: { type: 'RegularShot' as TShotType },
+        type: 'RegularShot' as TShotType,
       })).to.deep.equal({
         coord: { y: 12, x: 37 },
-        meta: { type: 'RegularShot' },
+        type: 'RegularShot',
         distance: 12.37,
         distanceInverse: 0.08,
         angle: 1,

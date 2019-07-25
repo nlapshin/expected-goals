@@ -22,7 +22,7 @@ export const ShotPart = {
   OtherBodyPart: 'OtherBodyPart' as TShotPart,
 };
 
-export type TShotFollowing = 'Corner' | 'Error' | 'Dribble';
+export type TShotFollowing = null | 'Corner' | 'Error' | 'Dribble';
 
 export const ShotFollowing = {
   Corner: 'Corner' as TShotFollowing,
@@ -41,7 +41,7 @@ export const AttackType = {
   OwnGoal: 'OwnGoal' as TAttackType,
 };
 
-export type TAssistType = 'Throughball' | 'AssistAfterThroughball' | 'Pullback'  | 'AssistAcrossFace' | 'HeadAssist';
+export type TAssistType = null | 'Throughball' | 'AssistAfterThroughball' | 'Pullback'  | 'AssistAcrossFace' | 'HeadAssist';
 
 export const AssistType = {
   Throughball: 'Throughball' as TAssistType,
@@ -57,11 +57,9 @@ export interface IAssist {
   angleInverse?: number;
   distance?: number;
   distanceInverse?: number;
-  meta?: {
-    type?: TAssistType;
-    intentional?: boolean;
-    keyPass?: boolean;
-  };
+  type?: TAssistType;
+  intentional?: boolean;
+  keyPass?: boolean;
 }
 
 export interface IDribble {
@@ -79,15 +77,16 @@ export interface IShot {
   angleInverse?: number;
   distance?: number;
   distanceInverse?: number;
-  meta: {
-    type: TShotType,
-    part?: TShotPart,
-    following?: TShotFollowing,
-    attack?: TAttackType,
-    bigChance?: boolean,
-    assist?: IAssist,
-    dribble?: IDribble,
-  };
+  type: TShotType;
+  part?: TShotPart;
+  following?: TShotFollowing;
+  attack?: TAttackType;
+  bigChance?: boolean;
+  rebound?: boolean;
+  gameState?: boolean;
+  league?: string;
+  assist?: IAssist;
+  dribble?: IDribble;
 }
 
 export interface IShotFlat {
@@ -104,6 +103,7 @@ export interface IShotFlat {
   shotFollowing?: TShotFollowing;
   shotAttack?: TAttackType;
   shotBigChance?: boolean;
+  shotRebound?: boolean;
   assistCoord?: ICoordLine;
   assistAngle?: number;
   assistAngleInverse?: number;
@@ -114,4 +114,6 @@ export interface IShotFlat {
   assistKeyPass?: boolean;
   dribbleCoord?: ICoordLine;
   dribbleDistance?: number;
+  gameState?: boolean;
+  league?: string;
 }

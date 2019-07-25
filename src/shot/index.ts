@@ -1,5 +1,3 @@
-import { get } from 'dotty';
-
 import Pitch from '../pitch';
 
 import { IShot, IShotFlat } from './model';
@@ -12,10 +10,10 @@ export default class Shot {
   }
 
   public flatShot(shot: IShot): IShotFlat {
-    const shotType = get(shot, 'meta.type');
-    const shotPart = get(shot, 'meta.part');
-    const shotFollowing = get(shot, 'meta.following');
-    const shotAttack = get(shot, 'meta.attack');
+    const shotType = shot.type;
+    const shotPart = shot.part;
+    const shotFollowing = shot.following;
+    const shotAttack = shot.attack;
 
     let output: IShotFlat = {
       id: shot.id,
@@ -30,7 +28,9 @@ export default class Shot {
       shotPart,
       shotFollowing,
       shotAttack,
-      shotBigChance: get(shot, 'meta.bigChance'),
+      shotBigChance: shot.bigChance,
+      gameState: shot.gameState,
+      league: shot.league,
     };
 
     if (shotType) {
@@ -49,10 +49,10 @@ export default class Shot {
       output[`shotAttack${shotAttack}`] = true;
     }
 
-    const assist = get(shot, 'meta.assist');
+    const assist = shot.assist;
 
     if (assist) {
-      const assistType = get(assist, 'meta.type');
+      const assistType = assist.type;
 
       output = {
         ...output,
@@ -63,8 +63,8 @@ export default class Shot {
           assistDistance: assist.distance,
           assistDistanceInverse: assist.distanceInverse,
           assistType,
-          assistIntentional: get(assist,   'meta.intentional'),
-          assistKeyPass: get(assist, 'meta.keyPass'),
+          assistIntentional: assist.intentional,
+          assistKeyPass: assist.keyPass,
         },
       };
 
@@ -73,7 +73,7 @@ export default class Shot {
       }
     }
 
-    const dribble = get(shot, 'meta.dribble');
+    const dribble = shot.dribble;
 
     if (dribble) {
       output = {
@@ -97,24 +97,17 @@ export default class Shot {
       ...this.pitch.prepareShotData(shot.coord, byCaley, headerOrCross),
     };
 
-    if (shot.meta.assist) {
-      shot.meta.assist = {
-        ...shot.meta.assist,
-        ...this.pitch.prepareAssistData(shot.meta.assist.coord, byCaley, headerOrCross),
+    if (shot.assist) {
+      shot.assist = {
+        ...shot.assist,
+        ...this.pitch.prepareAssistData(shot.assist.coord, byCaley, headerOrCross),
       };
     }
 
-    if (shot.meta.assist) {
-      shot.meta.assist = {
-        ...shot.meta.assist,
-        ...this.pitch.prepareAssistData(shot.meta.assist.coord, byCaley, headerOrCross),
-      };
-    }
-
-    if (shot.meta.dribble) {
-      shot.meta.dribble = {
-        ...shot.meta.dribble,
-        ...this.pitch.prepareDribbleData(shot.meta.dribble.coord),
+    if (shot.dribble) {
+      shot.dribble = {
+        ...shot.dribble,
+        ...this.pitch.prepareDribbleData(shot.dribble.coord),
       };
     }
 
@@ -122,7 +115,7 @@ export default class Shot {
   }
 
   public headerOrCross(shot: IShot) {
-    const type = shot.meta.type;
+    const type = shot.type;
 
     return type === 'CrossAndHeaderShot' ||
       type === 'CrossAndFeetShot' ||
