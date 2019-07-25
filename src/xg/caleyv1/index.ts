@@ -1,5 +1,4 @@
 import { round } from 'mathjs';
-import { get } from 'lodash';
 
 import { TxG } from '../model';
 import { IShot } from '../../shot/model';
