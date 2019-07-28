@@ -132,7 +132,7 @@ describe('xg by caley: version 2', () => {
             type: 'Pullback',
           },
         },
-        expected: 0.38,
+        expected: 0.3,
       },
       {
         label: 'simple shot with big chance and following error',

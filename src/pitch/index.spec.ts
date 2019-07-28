@@ -52,9 +52,9 @@ describe('pitch', () => {
     it('should calculate the shot distance by Caley metric', () => {
       const pitch = new Pitch();
 
-      expect(pitch.calcShotDistanceByCaley({ x: 34, y: 20 }, true)).to.equal(21.87);
-      expect(pitch.calcShotDistanceByCaley({ x: 50, y: 30 }, true)).to.equal(37.18);
-      expect(pitch.calcShotDistanceByCaley({ x: 50, y: 30 })).to.equal(32.81);
+      expect(pitch.calcShotDistance({ x: 34, y: 20 }, true)).to.equal(21.87);
+      expect(pitch.calcShotDistance({ x: 50, y: 30 }, true)).to.equal(37.18);
+      expect(pitch.calcShotDistance({ x: 50, y: 30 })).to.equal(32.81);
     });
   });
 

@@ -86,8 +86,8 @@ describe('Shot', () => {
       })).to.deep.equal({
         coord: { y: 12, x: 44 },
         type: 'RegularShot',
-        distance: 15.62,
-        distanceInverse: 0.06,
+        distance: 12,
+        distanceInverse: 0.08,
         angle: 0.69,
         angleInverse: 1.45,
       });
@@ -98,7 +98,7 @@ describe('Shot', () => {
       })).to.deep.equal({
         coord: { y: 12, x: 38 },
         type: 'RegularShot',
-        distance: 12.65,
+        distance: 12,
         distanceInverse: 0.08,
         angle: 0.98,
         angleInverse: 1.02,
@@ -110,7 +110,7 @@ describe('Shot', () => {
       })).to.deep.equal({
         coord: { y: 12, x: 37 },
         type: 'RegularShot',
-        distance: 12.37,
+        distance: 12,
         distanceInverse: 0.08,
         angle: 1,
         angleInverse: 1,
