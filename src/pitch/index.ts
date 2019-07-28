@@ -101,15 +101,15 @@ export default class Pitch {
     return this.round(y / this.distanceCoef);
   }
 
-  public calcShotDistanceByCaley(coord: ICoord, headerOrCross: boolean = false): number {
+  public calcShotDistance(coord: ICoord, headerOrCross: boolean = false): number {
     return this.calcDistanceByCaley(coord, headerOrCross);
   }
 
-  public calcAssistDistanceByCaley(coord: ICoord, headerOrCross: boolean = false): number {
-    return this.calcDistanceByCaley(coord, headerOrCross);
+  public calcAssistDistance(assistCoord: ICoord): number {
+    return this.calcDistance(assistCoord);
   }
 
-  public calcDribbleDistanceByCaley(dribbleCoord: ICoord, shotCoord: ICoord): number {
+  public calcDribbleDistance(dribbleCoord: ICoord, shotCoord: ICoord): number {
     return this.calcDistanceBetweenCoord(dribbleCoord, shotCoord);
   }
 
@@ -153,8 +153,8 @@ export default class Pitch {
     return this.checkArea(this.dangerZoneCoord, coord);
   }
 
-  public preparePitchData(coord: ICoord, byCaley: boolean = false, headerOrCross: boolean = false): IShotPitchData {
-    const distance = byCaley ? this.calcShotDistanceByCaley(coord, headerOrCross) : this.calcDistance(coord);
+  public prepareShotData(coord: ICoord, headerOrCross: boolean = false): IShotPitchData {
+    const distance = this.calcShotDistance(coord, headerOrCross);
     const angle = this.calcAngle(coord);
 
     const distanceInverse = this.inverseDistance(distance);
@@ -168,16 +168,23 @@ export default class Pitch {
     };
   }
 
-  public prepareShotData(coord: ICoord, byCaley: boolean = false, headerOrCross: boolean = false): IShotPitchData {
-    return this.preparePitchData(coord, byCaley, headerOrCross);
-  }
+  public prepareAssistData(coord: ICoordLine): IAssistPitchData {
+    const distance = this.calcAssistDistance(coord.start);
+    const angle = this.calcAngle(coord.start);
 
-  public prepareAssistData(coord: ICoordLine, byCaley: boolean = false, headerOrCross: boolean = false): IAssistPitchData {
-    return this.preparePitchData(coord.start, byCaley, headerOrCross);
+    const distanceInverse = this.inverseDistance(distance);
+    const angleInverse = this.inverseAngle(angle);
+
+    return {
+      distance,
+      angle,
+      distanceInverse,
+      angleInverse,
+    };
   }
 
   public prepareDribbleData(coord: ICoordLine): IDribblePitchData {
-    const distance = this.calcDribbleDistanceByCaley(coord.start, coord.end);
+    const distance = this.calcDribbleDistance(coord.start, coord.end);
     const distanceInverse = this.inverseDistance(distance);
 
     return {

@@ -94,13 +94,13 @@ export default class Shot {
 
     shot = {
       ...shot,
-      ...this.pitch.prepareShotData(shot.coord, byCaley, headerOrCross),
+      ...this.pitch.prepareShotData(shot.coord, headerOrCross),
     };
 
     if (shot.assist) {
       shot.assist = {
         ...shot.assist,
-        ...this.pitch.prepareAssistData(shot.assist.coord, byCaley, headerOrCross),
+        ...this.pitch.prepareAssistData(shot.assist.coord),
       };
     }
 
