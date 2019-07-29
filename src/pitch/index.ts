@@ -1,70 +1,31 @@
-import { isFinite, has } from 'lodash';
 import { norm, round } from 'mathjs';
 
 import {
-  ICoord, ICoordOptions,
-  IPostCoord, ICoordLine, ICoordArea,
+  ICoord, ICoordLine,
   IShotPitchData, IAssistPitchData, IDribblePitchData,
 } from './model';
+
+import PitchCoord from './coord';
 
 export default class Pitch {
   private roundCoef: number;
   private distanceCoef: number;
   private YARD: number = 0.9144;
 
-  private pitchSize: ICoord = {
-    x: 68,
-    y: 105,
-  };
-
-  private postCoord: IPostCoord = {
-    left: { x: 30.34, y: 0 },
-    right: { x: 37.66, y: 0 },
-    center: { x: 34, y: 0 },
-  };
-
-  private penaltyAreaCoord: ICoordArea = {
-    leftBottom: { x: 12.34, y: 0 },
-    rightBottom: { x: 55.66, y: 0 },
-    leftUpper: { x: 12.34, y: 18 },
-    rightUpper: { x: 55.66, y: 18 },
-  };
-
-  private get dangerZoneCoord(): ICoordArea {
-    return {
-      leftBottom: { x: this.postCoord.left.x, y: 6 },
-      rightBottom: { x: this.postCoord.right.x, y: 6 },
-      leftUpper: { x: this.postCoord.left.x, y: this.penaltyAreaCoord.leftUpper.y },
-      rightUpper: { x: this.postCoord.right.x, y: this.penaltyAreaCoord.rightUpper.y },
-    };
-  }
+  private coord: PitchCoord;
 
   constructor(options = { isYard: false, round: 2 }) {
     this.roundCoef = options.round ? options.round : 2;
     this.distanceCoef = options.isYard ? 1 : this.YARD;
-  }
 
-  public get maxCoord(): ICoord {
-    return this.pitchSize;
-  }
-
-  public checkCoord(coord: ICoordOptions): boolean {
-    if (has(coord, 'x') && !this.checkCoordHandler(coord.x, this.maxCoord.x)) {
-      return false;
-    }
-
-    if (has(coord, 'y') && !this.checkCoordHandler(coord.y, this.maxCoord.y)) {
-      return false;
-    }
-
-    return true;
+    this.coord = new PitchCoord({ round: options.round });
   }
 
   public calcAngle(coord: ICoord): number {
     const { x, y } = coord;
 
-    const leftX = this.postCoord.left.x;
-    const rightX = this.postCoord.right.x;
+    const leftX = this.coord.postCoord.left.x;
+    const rightX = this.coord.postCoord.right.x;
 
     // center
     if ((leftX <= x) && (x <= rightX)) {
@@ -78,8 +39,8 @@ export default class Pitch {
     return this.calcAngleHandler({ x: x - rightX, y });
   }
 
-  public calcDistance(coord: ICoord): number {
-    return this.calcDistanceBetweenCoord(coord, this.postCoord.center);
+  public calcDistanceToPost(coord: ICoord): number {
+    return this.calcDistanceBetweenCoord(coord, this.coord.postCoord.center);
   }
 
   public calcDistanceBetweenCoord(coord1: ICoord, coord2: ICoord, isYard = false): number {
@@ -95,7 +56,7 @@ export default class Pitch {
     const { x, y } = coord;
 
     if (headerOrCross) {
-      return this.calcDistance({ x, y });
+      return this.calcDistanceToPost({ x, y });
     }
 
     return this.round(y / this.distanceCoef);
@@ -106,30 +67,16 @@ export default class Pitch {
   }
 
   public calcAssistDistance(assistCoord: ICoord): number {
-    return this.calcDistance(assistCoord);
+    return this.calcDistanceToPost(assistCoord);
   }
 
   public calcDribbleDistance(dribbleCoord: ICoord, shotCoord: ICoord): number {
-    return this.calcDistanceBetweenCoord(dribbleCoord, shotCoord);
-  }
+    const dribbleStart = dribbleCoord.y / this.distanceCoef;
+    const shotStart = shotCoord.y / this.distanceCoef;
 
-  public checkArea(area: ICoordArea, coord: ICoord): boolean {
-    const { x, y } = coord;
+    const result = Math.abs(dribbleStart - shotStart / shotStart);
 
-    const minx = area.leftBottom.x;
-    const maxx = area.rightBottom.x;
-    const miny = area.leftBottom.y;
-    const maxy = area.leftUpper.y;
-
-    if ((x < minx) || (x > maxx)) {
-      return false;
-    }
-
-    if ((y < miny) || (y > maxy)) {
-      return false;
-    }
-
-    return true;
+    return this.round(result);
   }
 
   public checkPullback(coord: ICoordLine) {
@@ -139,18 +86,14 @@ export default class Pitch {
       return false;
     }
 
-    const xLeftBottom = this.penaltyAreaCoord.leftBottom.x;
-    const xRightBottom = this.penaltyAreaCoord.rightBottom.x;
+    const xLeftBottom = this.coord.penaltyAreaCoord.leftBottom.x;
+    const xRightBottom = this.coord.penaltyAreaCoord.rightBottom.x;
 
     if ((start.x < (xLeftBottom - 3)) || (start.x > (xRightBottom - 3))) {
       return false;
     }
 
-    return this.checkDangerZone(end);
-  }
-
-  public checkDangerZone(coord: ICoord) {
-    return this.checkArea(this.dangerZoneCoord, coord);
+    return this.coord.checkDangerZone(end);
   }
 
   public prepareShotData(coord: ICoord, headerOrCross: boolean = false): IShotPitchData {
@@ -193,36 +136,12 @@ export default class Pitch {
     };
   }
 
-  public convertPercentToYard(coord: ICoord) {
-    const { x, y } = coord;
-    const { x: xLength, y: yLength } = this.pitchSize;
-
-    return {
-      x: this.round((x * xLength) / 100),
-      y: this.round((y * yLength) / 100),
-    };
-  }
-
-  public convertYardToPercent(coord: ICoord) {
-    const { x, y } = coord;
-    const { x: xLength, y: yLength } = this.pitchSize;
-
-    return {
-      x: this.round((x * 100) / xLength),
-      y: this.round((y * 100) / yLength),
-    };
-  }
-
   public inverseDistance(num: number) {
     return this.round(1 / num);
   }
 
   public inverseAngle(num: number) {
     return this.round(1 / num);
-  }
-
-  private checkCoordHandler(value, max) {
-    return isFinite(value) && value >= 0 && value <= max;
   }
 
   private calcAngleHandler(coord: ICoord) {
