@@ -107,7 +107,7 @@ export default class Shot {
     if (shot.dribble) {
       shot.dribble = {
         ...shot.dribble,
-        ...this.pitch.prepareDribbleData(shot.dribble.coord),
+        ...this.pitch.prepareDribbleData(shot.dribble.coord, shot.coord),
       };
     }
 
