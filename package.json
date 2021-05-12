@@ -47,6 +47,6 @@
     "@types/mocha": "^5.2.7",
     "@types/node": "^12.6.2",
     "dotty": "^0.1.0",
-    "mathjs": "^6.0.3"
+    "mathjs": "^7.5.1"
   }
 }
