@@ -46,7 +46,7 @@
     "@types/chai-as-promised": "^7.1.0",
     "@types/mocha": "^5.2.7",
     "@types/node": "^12.6.2",
-    "dotty": "^0.1.0",
+    "dotty": "^0.1.2",
     "mathjs": "^6.0.3"
   }
 }
